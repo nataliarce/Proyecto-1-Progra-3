@@ -23,39 +23,14 @@ public class Prestamo
 {
     private double monto;
     private double plazo;
-    private double tasa;
-    ArrayList<Mensualidad> men;
+    private double tasaInteres;
+    ArrayList<Pago> pagos;
     
     public Prestamo(double m, double p, double t)
     {
         this.monto = m;
         this.plazo = p;
-        this.tasa = t;
-        this.men = getMensualidad();
-      
-    }
-    
-    public final ArrayList<Mensualidad> getMensualidad()
-    {
-        ArrayList<Mensualidad> mensualidades = new ArrayList();
-        Mensualidad temp;
-        double saldoActual = monto;
-        double interesNuevo;
-        double amortizacionActual;
-        int nuevoNumero;
-        
-        for (int i=0;i<getPlazo();i++)
-        {
-            nuevoNumero = i+1;
-            interesNuevo = (int) saldoActual * getTasa() / 100;
-            amortizacionActual = (float) calcularCuota() - interesNuevo;
-            temp = new Mensualidad(nuevoNumero, saldoActual, interesNuevo, amortizacionActual);
-            mensualidades.add(temp);
-            saldoActual = saldoActual - amortizacionActual;
-            
-        }
-        
-        return mensualidades;
+        this.tasaInteres = t;  
     }
 
     public double getMonto()
@@ -78,48 +53,67 @@ public class Prestamo
         this.plazo = p;
     }
     
-    public double getTasa()
+    public double getTasaInteres()
     {
-        return tasa;
+        return tasaInteres;
     }
     
-    public void setTasa(double tasa)
+    public void setTasaInteres(double tasa)
     {
-        this.tasa = tasa;
+        this.tasaInteres = tasa;
     }
     
     public double calcularCuota()
     {
         double x;
         double cuota;
-        x = Math.pow((1+(tasa/100)),-plazo);
-        cuota= (monto*(tasa/100)/(1-x));
+        x = Math.pow((1+(tasaInteres/100)),-plazo);
+        cuota= (monto*(tasaInteres/100)/(1-x));
         
         return cuota;
     }
     
+    @Override
     public String toString()
     {
-        return "Cuota: " + (int)getMonto() + "     Plazo: " + (int)getPlazo() + "      Interes: " + (int)getTasa() + "      Cuota: " + (int)calcularCuota();
+        return "Cuota: " + (int)getMonto() + "     Plazo: " + (int)getPlazo() + "      Interes: " + 
+                (int)getTasaInteres() + "      Cuota: " + (int)calcularCuota();
     }
     
-    public String toStringMensualidad()
+    public void anadirPago(String fecha, float monto)
     {
-        System.out.println(toString());
-        String imprime = " ";
+        Pago p;
+        int numeroPago = pagos.size() + 1;
         
-        for (Mensualidad mensu : men)
+        if(monto == calcularCuota())
         {
-            imprime =  imprime + mensu.toStringM();
-        } 
-        
-        return "Mensualidades: \n" + "No.  Saldo  Interes  Amort.\n" + imprime;
+            p = new Pago(fecha,numeroPago, monto, getInteresActual(), getAmortizacionActual());
+            pagos.add(p);
+        }
+        else //caso especial, monto mayor a la cuota
+        {
+            if(monto > calcularCuota())
+            {
+                p = new Pago(fecha,numeroPago, monto, getInteresActual(), getAmortizacionActual());
+                pagos.add(p);
+                setMonto(this.monto - monto);
+            }
+            else
+            {
+                throw new IllegalArgumentException();
+            }
+        }
     }
     
-        public double calcularInteres()
+    public float getInteresActual()
     {
-        double aux = monto * (tasa/100);
-        tasa = aux;
-        return tasa;
-    } 
+        float interesActual = (float)(getMonto() * getTasaInteres() / 100);
+        return interesActual;
+    }
+    
+    public float getAmortizacionActual()
+    {
+        float amortizacionActual = (float)(calcularCuota() - getInteresActual());
+        return amortizacionActual;
+    }
 }
