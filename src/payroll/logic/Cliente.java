@@ -27,6 +27,11 @@ public class Cliente {
     }
 
     public Cliente() {
+        this.cedula = "";
+        this.nombre = "";
+        this.canton = "";
+        this.distrito = "";
+        
     }
     
     
