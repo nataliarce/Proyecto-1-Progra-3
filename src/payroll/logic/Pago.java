@@ -72,5 +72,13 @@ public class Pago {
     public void setAmortizacion(float amortizacion) {
         this.amortizacion = amortizacion;
     }
-        
+
+    @Override
+    public String toString() {
+        return "Pago{" + "fecha=" + fecha + ", numeroCuota=" + numeroCuota + ", montoPagado=" + 
+                montoPagado + ", interes=" + interes + ", amortizacion=" + amortizacion + '}';
+    }
+    
+    
+    
 }

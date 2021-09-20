@@ -5,6 +5,8 @@
  */
 package payroll.logic;
 
+import java.util.ArrayList;
+
 /**
  *
  * Autores:
@@ -18,6 +20,7 @@ public class Cliente {
     private String nombre;
     private String canton;
     private String distrito;
+    private ArrayList<Prestamo> prestamos; 
 
     public Cliente(String cedula, String nombre, String canton, String distrito) {
         this.cedula = cedula;
@@ -33,7 +36,6 @@ public class Cliente {
         this.distrito = "";
         
     }
-    
     
 
     public String getCedula() {
@@ -67,6 +69,33 @@ public class Cliente {
     public void setDistrito(String distrito) {
         this.distrito = distrito;
     }
+
+    public ArrayList<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(ArrayList<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
+    
+    public void anadirPrestamo(double monto, double plazo, double tasaInteres)
+    {
+        Prestamo p = new Prestamo(monto, plazo, tasaInteres);
+        prestamos.add(p);
+    }
+    
+    public void anadirPago(Prestamo prestamo, String fecha, float monto)
+    {
+        for(Prestamo p : prestamos)
+        {
+            if(p.equals(prestamo))
+            {
+                p.anadirPago(fecha, monto);
+                break;
+            }
+        }
+    }
+    
 
     @Override
     public String toString() {

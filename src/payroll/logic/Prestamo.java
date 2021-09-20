@@ -116,4 +116,14 @@ public class Prestamo
         float amortizacionActual = (float)(calcularCuota() - getInteresActual());
         return amortizacionActual;
     }
+    
+    public String imprimeListaPagos()
+    {
+        String result = "";
+        for(Pago p : pagos)
+        {
+            result += p.toString() + "\n";
+        }
+        return result;
+    }
 }
