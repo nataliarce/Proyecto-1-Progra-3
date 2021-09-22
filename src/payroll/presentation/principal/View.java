@@ -7,7 +7,10 @@ package payroll.presentation.principal;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.Observable;
+import javax.imageio.ImageIO;
+import payroll.logic.Provincia;
 
 /**
  *
@@ -44,51 +47,16 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 //************** END MVC ***********
     
-//**************  RESALTAR ***********
-     ArrayList<Rectangle> coordenadas = new ArrayList<>();
-     Rectangle guanacaste = new Rectangle(80,159,124,44); 
-     Rectangle sanJose = new Rectangle(424,395,62,20); 
-     Rectangle sanJose2 = new Rectangle(318,333,89,49); 
-     Rectangle heredia = new Rectangle(400,145,50,94); 
-     Rectangle cartago = new Rectangle(459,315,95,52); 
-     Rectangle alajuela = new Rectangle(300,132,90,138);
-     Rectangle alajuela2 = new Rectangle(188,91,168,35); 
-     Rectangle limon = new Rectangle(588,329,72,106); 
-     Rectangle limon2 = new Rectangle(475,192,77,13); 
-     Rectangle puntarenas = new Rectangle(547,511,121,74); 
-     Rectangle puntarenas2 = new Rectangle(555,456,58,39); 
-     Rectangle puntarenas3 = new Rectangle(242,246,38,44);  
-     Rectangle puntarenas4 = new Rectangle(173,314,33,42); 
-     Rectangle normal2 = new Rectangle(593,4,251,263); 
-     Rectangle normal3 = new Rectangle(10,404,428,324);
-
-        public void agregar ()
-    {
-        coordenadas.add(guanacaste);
-        coordenadas.add(sanJose);
-        coordenadas.add(sanJose2);
-        coordenadas.add(heredia);
-        coordenadas.add(cartago);
-        coordenadas.add(alajuela);
-        coordenadas.add(alajuela2);
-        coordenadas.add(limon);
-        coordenadas.add(limon2);
-        coordenadas.add(puntarenas); 
-        coordenadas.add(puntarenas2);
-        coordenadas.add(puntarenas3);
-        coordenadas.add(puntarenas4);
-        coordenadas.add(normal2); //10
-        coordenadas.add(normal3);  //11
-    }
-//**************  END RESALTAR ***********
     /**
      * Creates new form View
      */
     public View() {
         initComponents();
-        agregar();
+        this.cargarProvincias();
+//        agregar();
     }
 
     /**
@@ -110,10 +78,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         nombre = new javax.swing.JTextField();
         canton = new javax.swing.JComboBox<>();
         provincia = new javax.swing.JTextField();
+        distrito = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Provincias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/provincias.png"))); // NOI18N
+        Provincias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/payroll/presentation/imagenes/mapa0.png"))); // NOI18N
         Provincias.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 ProvinciasMouseMoved(evt);
@@ -137,6 +106,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,11 +130,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textFieldCanton)
-                                .addGap(136, 136, 136)
-                                .addComponent(textFieldDistrito)))))
+                            .addComponent(textFieldCanton)
+                            .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(114, 114, 114)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDistrito))))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -185,7 +157,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(Provincias, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -202,119 +175,18 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void ProvinciasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProvinciasMouseMoved
         // TODO add your handling code here:
-        double x = (double)evt.getX();
-        double y = (double)evt.getY();
-        for (int i=0;i<coordenadas.size();i++)
-       {
-           switch(i)
-           {
-               case 0:
-                    if (coordenadas.get(i).contains(x,y))
-                        {
-                            ImageIcon guana = new ImageIcon("src/Imagenes/guanacaste.png");
-                            Provincias.setIcon(guana);
-                        }
-                    break;
-               case 1:
-                   if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon sj = new ImageIcon("src/Imagenes/san jose.png");
-                            Provincias.setIcon(sj);
-                   }
-                   break;
-               case 2:
-                       if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon sj2 = new ImageIcon("src/Imagenes/san jose.png");
-                            Provincias.setIcon(sj2);
-                   }
-                   break;
-               case 3:
-                   if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon h = new ImageIcon("src/Imagenes/heredia.png");
-                            Provincias.setIcon(h);
-                   }
-                   break;
-               case 4:
-                   if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon c = new ImageIcon("src/Imagenes/cartago.png");
-                            Provincias.setIcon(c);
-                   }
-                   break;
-               case 5:
-                   if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon a = new ImageIcon("src/Imagenes/alajuela.png");
-                            Provincias.setIcon(a);
-                   }
-                   break;
-               case 6:
-                    if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon a = new ImageIcon("src/Imagenes/alajuela.png");
-                            Provincias.setIcon(a);
-                   }
-                   break;
-               case 7:
-                   if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon l = new ImageIcon("src/Imagenes/limon.png");
-                            Provincias.setIcon(l);
-                   }
-                   break;
-               case 8:
-                    if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon l = new ImageIcon("src/Imagenes/limon.png");
-                            Provincias.setIcon(l);
-                   }
-                    break;
-               case 9:
-                    if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon p = new ImageIcon("src/Imagenes/puntarenas.png");
-                            Provincias.setIcon(p);
-                   }
-                    break;
-               case 10:
-                       if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon p = new ImageIcon("src/Imagenes/puntarenas.png");
-                            Provincias.setIcon(p);
-                   }
-                       break;
-               case 11:
-                       if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon p = new ImageIcon("src/Imagenes/puntarenas.png");
-                            Provincias.setIcon(p);
-                   }
-                       break;
-               case 12:
-                       if (coordenadas.get(i).contains(x, y))
-                   {
-                            ImageIcon p = new ImageIcon("src/Imagenes/puntarenas.png");
-                            Provincias.setIcon(p);
-                   }
-                       break;
-               case 13:
-                        if (coordenadas.get(i).contains(x, y))
-                        {
-                            ImageIcon normal = new ImageIcon("src/Imagenes/provincias.png");
-                            Provincias.setIcon(normal);
-                        }
-               case 14:
-                        if (coordenadas.get(i).contains(x, y))
-                         {
-                            ImageIcon normal = new ImageIcon("src/Imagenes/provincias.png");
-                            Provincias.setIcon(normal);
-                        }
-                        
-           }
-
+        Provincia prov;
+        prov = controller.consultarCoordenadas(evt.getX(), evt.getY());
+        if (prov!=null)
+        {
+            int p = prov.getNumero();
+            Provincias.setIcon(pro[p]);
         }
+        else 
+        {
+            Provincias.setIcon(pro[0]);
+        }
+
     }//GEN-LAST:event_ProvinciasMouseMoved
 
     /**
@@ -356,6 +228,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JLabel Provincias;
     private javax.swing.JComboBox<String> canton;
     private javax.swing.JTextField cedula;
+    private javax.swing.JComboBox<String> distrito;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField provincia;
     private javax.swing.JLabel textFieldCanton;
@@ -365,5 +238,21 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JLabel textFieldProvincia;
     // End of variables declaration//GEN-END:variables
 
+    int n = 8;
+    ImageIcon [] pro;
+    public void cargarProvincias()
+    {
+        pro = new ImageIcon[n];
+        try {
+            for (int i=0;i<n;i++)
+            {
+                pro[i] = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("../imagenes/mapa"+i+".png")));
+            }
+        }
+        catch(IOException e)
+        {
+            System.err.println(e);
+        }
+    }
 
 }

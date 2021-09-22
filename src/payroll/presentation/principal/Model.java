@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package payroll.presentation.principal;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import payroll.logic.Cliente;
+import payroll.logic.Provincia;
+
 
 /**
  *
@@ -19,8 +22,8 @@ public class Model extends Observable{
     
     
     private Cliente cliente;
-    
-    
+    private Provincia provincia;
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -28,7 +31,15 @@ public class Model extends Observable{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
+    public Provincia getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
+    }
+
     @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); 

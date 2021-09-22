@@ -12,6 +12,8 @@ préstamo. En dicho caso deberá recalcularse la cuota, considerando el saldo re
 la nueva cuota mensual será menor que antes
 */
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 /**
  *
  * Autores:
@@ -21,9 +23,11 @@ import java.util.ArrayList;
  */
 public class Prestamo 
 {
+    @XmlID
     private double monto;
     private double plazo;
     private double tasaInteres;
+    @XmlIDREF
     ArrayList<Pago> pagos;
     
     public Prestamo(double m, double p, double t)

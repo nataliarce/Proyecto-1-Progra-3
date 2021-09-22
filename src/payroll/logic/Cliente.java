@@ -6,7 +6,8 @@
 package payroll.logic;
 
 import java.util.ArrayList;
-
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 /**
  *
  * Autores:
@@ -16,6 +17,7 @@ import java.util.ArrayList;
  */
 public class Cliente {
     
+    @XmlID
     private String cedula;
     private String nombre;
     private String canton;
