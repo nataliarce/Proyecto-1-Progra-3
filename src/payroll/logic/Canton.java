@@ -13,14 +13,14 @@ import java.util.ArrayList;
  */
 public class Canton
 {
-    private int numero;
+    private String numero;
     private String nombre;
     private ArrayList<Distrito> arrayDistrito;
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

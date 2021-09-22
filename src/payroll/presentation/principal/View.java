@@ -174,19 +174,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     }//GEN-LAST:event_ProvinciasComponentMoved
 
     private void ProvinciasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProvinciasMouseMoved
-        // TODO add your handling code here:
-        Provincia prov;
-        prov = controller.consultarCoordenadas(evt.getX(), evt.getY());
-        if (prov!=null)
-        {
-            int p = prov.getNumero();
-            Provincias.setIcon(pro[p]);
-        }
-        else 
-        {
-            Provincias.setIcon(pro[0]);
-        }
-
+        
+        Provincia prov = controller.consultarCoordenadas(evt.getX(), evt.getY());
+        int numProvincia = Integer.parseInt(prov.getNumero());
+        
+        Provincias.setIcon(pro[numProvincia]);
     }//GEN-LAST:event_ProvinciasMouseMoved
 
     /**

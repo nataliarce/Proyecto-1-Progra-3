@@ -27,6 +27,8 @@ public class Service {
         }
         return theInstance;
     }
+     
+     
     private Data data;
     //-----------------------------------
      
@@ -66,16 +68,17 @@ public class Service {
 //        coordenadas.add(new Rectangle(10,404,428,324)); //Normal2
     }
      
-    public Provincia buscar(double x,double y)
+    public Provincia buscar(double x, double y)
     {
-      Provincia resultado;
+      Provincia resultado = null;
       for (int i=0;i<coordenadas.size();i++)
       {
           if (coordenadas.get(i).contains(x,y))
           {
-              return resultado.getNumero();
+              resultado = this.data.getProvincia().get(i);
+              return resultado;
           }
       }
-      return null;
+      return resultado;
     }               
 }

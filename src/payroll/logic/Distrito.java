@@ -12,15 +12,15 @@ package payroll.logic;
  */
 public class Distrito 
 {
-    private int numero;
+    private String numero;
     private String nombre;
 
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

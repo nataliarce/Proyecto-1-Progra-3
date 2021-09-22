@@ -12,15 +12,15 @@ import java.util.ArrayList;
  */
 public class Provincia
 {
-    private int numero;
+    private String numero;
     private String nombre;
     private ArrayList<Canton> arrayCanton;
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
