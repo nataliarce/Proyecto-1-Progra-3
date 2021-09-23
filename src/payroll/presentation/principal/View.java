@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.Observable;
 import javax.imageio.ImageIO;
+import payroll.logic.Cliente;
 import payroll.logic.Provincia;
 
 /**
@@ -45,11 +46,16 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-         Provincia provincia = model.getProvincia();
-         if(provincia.getNombre() == "")
+         Provincia prov = model.getProvincia();
+         if(prov.getNombre() == "")
          {
              Provincias.setIcon(pro[0]);
          }
+         
+         Cliente cliente = model.getCliente();
+         cedula.setText(cliente.getCedula());
+         nombre.setText(cliente.getNombre());
+         provincia.setText(cliente.getProvincia().toString());         
     }
     
 //************** END MVC ***********
@@ -60,7 +66,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     public View() {
         initComponents();
         this.cargarProvincias();
-//        agregar();
     }
 
     /**
@@ -83,6 +88,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         canton = new javax.swing.JComboBox<>();
         provincia = new javax.swing.JTextField();
         distrito = new javax.swing.JComboBox<>();
+        ConsultarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +118,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        ConsultarBtn.setText("Consultar");
+        ConsultarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,7 +140,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(90, 90, 90)
+                                .addComponent(ConsultarBtn))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textFieldProvincia)
@@ -148,7 +164,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldCedula)
-                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConsultarBtn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldNombre)
@@ -193,6 +210,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         }
     }//GEN-LAST:event_ProvinciasMouseMoved
 
+    private void ConsultarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBtnActionPerformed
+        controller.consultarClientePorCedula(cedula.getText());
+    }//GEN-LAST:event_ConsultarBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,6 +250,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ConsultarBtn;
     private javax.swing.JLabel Provincias;
     private javax.swing.JComboBox<String> canton;
     private javax.swing.JTextField cedula;

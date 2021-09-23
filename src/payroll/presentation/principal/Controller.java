@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package payroll.presentation.principal;
+import payroll.logic.Cliente;
 import payroll.logic.Provincia;
 import payroll.logic.Service;
 /**
@@ -34,9 +35,9 @@ public class Controller  {
     public void show(){
         this.view.setVisible(true);
     }
-    public Provincia consultarCoordenadas(int x,int y)
-    {
-     
+    
+    public Provincia consultarCoordenadas(int x, int y)
+    {   
         try
         {
         Provincia result = Service.instance().buscar(x,y);
@@ -46,23 +47,28 @@ public class Controller  {
         }
         
         catch (Exception e)
-                {
-                    model.setProvincia(new Provincia());
-                    model.commit();
-                }
-        return null;
-        
+        {
+            model.setProvincia(new Provincia());
+            model.commit();
+        }
+        return null;    
+    }
+    
+    public void consultarClientePorCedula(String cedula)
+    {
+        try
+        {
+        Cliente cliente = Service.instance().buscarClientePorCedula(cedula);
+        model.setCliente(cliente);
+        model.commit();
+        }
+        catch (Exception e)
+        {
+            model.setCliente(new Cliente());
+            model.commit();
+        }
     }
     // Controller methods that respond to View events
     // probably invoke methods from Service,
     // and set data to Model, which in turn causes the View to update 
 }
-
-//     for (int i=0;i<coordenadas.size();i++)
-//      {
-//          if (coordenadas.get(i).contains(coordenadas.get(i).x,coordenadas.get(i).y))
-//          {
-//              return data.getProvincia();
-//          }
-//      }
-//      return null;

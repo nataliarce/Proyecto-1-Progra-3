@@ -6,6 +6,7 @@
 package payroll.logic;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -44,8 +45,7 @@ public class Cliente {
         this.nombre = "";
         this.provincia = new Provincia();
         this.canton = new Canton();
-        this.distrito = new Distrito();
-        
+        this.distrito = new Distrito();        
     }
     
 
@@ -121,6 +121,33 @@ public class Cliente {
         return "Cliente{" + "cedula=" + cedula + ", nombre=" + nombre + ", canton=" 
                 + canton + ", distrito=" + distrito + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.cedula);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (!Objects.equals(this.cedula, other.cedula)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     
     

@@ -21,16 +21,16 @@ import payroll.logic.Provincia;
 public class Model extends Observable{
     
     
-   // private Cliente cliente;
+    private Cliente cliente;
     private Provincia provincia;
 
-    /*public Cliente getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }*/
+    }
 
     public Provincia getProvincia() {
         return provincia;

@@ -21,12 +21,12 @@ import payroll.logic.Provincia;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
-    //private List<Cliente> clientes;    
+    private List<Cliente> clientes;    
     //private List<Prestamo> prestamo;     
     private List<Provincia> provincias;
 
     public Data() {
-        //clientes = new ArrayList<>();
+        clientes = new ArrayList<>();
         //prestamo = new ArrayList<>();
         provincias = new ArrayList<>();
     }
@@ -47,14 +47,14 @@ public class Data {
         this.provincias = provincias;
     }
 
-//    public List<Cliente> getClientes() {
-//        return clientes;
-//    }
-//
-//    public void setClientes(List<Cliente> clientes) {
-//        this.clientes = clientes;
-//    }
-//
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
 //    public List<Prestamo> getFacturas() {
 //        return prestamo;
 //    }

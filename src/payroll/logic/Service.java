@@ -84,5 +84,26 @@ public class Service {
           }
       }
       throw new Exception("Provincia no existe");
-    }               
+    }  
+    
+    public Cliente buscarClientePorCedula(String cedula) throws Exception
+    {
+        Cliente result = null;
+        for(Cliente c : this.data.getClientes())
+        {
+            if(c.getCedula().equals(cedula))
+            {
+                result = c;
+                break;
+            }
+        }
+        if(result!=null)
+        {
+            return result;
+        }
+        else
+        {
+            throw new Exception("Cliente no encontrado");
+        }
+    }
 }
