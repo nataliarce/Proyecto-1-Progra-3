@@ -23,11 +23,11 @@ import javax.xml.bind.annotation.XmlIDREF;
  */
 public class Prestamo 
 {
-    @XmlID
+   // @XmlID
     private double monto;
     private double plazo;
     private double tasaInteres;
-    @XmlIDREF
+   // @XmlIDREF
     ArrayList<Pago> pagos;
     
     public Prestamo(double m, double p, double t)

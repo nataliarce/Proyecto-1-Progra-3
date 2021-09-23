@@ -21,10 +21,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
  */
 public class Cliente {
     
-    @XmlID
+   // @XmlID
     private String cedula;
     private String nombre;
-    @XmlIDREF
+   // @XmlIDREF
     private Provincia provincia;
     private Canton canton;
     private Distrito distrito;

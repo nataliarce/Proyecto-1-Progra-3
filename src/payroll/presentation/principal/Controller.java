@@ -26,7 +26,8 @@ public class Controller  {
     {
         this.model = model;
         this.view = view;
-        this.model.setCliente(new Cliente());
+      //  this.model.setCliente(new Cliente());
+      this.model.setProvincia(new Provincia());
 
         // invoke Model sets for initialization before linking to the view
         // problably get the data from Service
@@ -38,7 +39,7 @@ public class Controller  {
     public void show(){
         this.view.setVisible(true);
     }
-    public Provincia consultarCoordenadas(double x,double y)
+    public Provincia consultarCoordenadas(int x,int y)
     {
      
         try

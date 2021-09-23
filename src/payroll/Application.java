@@ -31,7 +31,8 @@ public class Application {
         Model model = new Model();
             
         Controller controller = new Controller(model, view);
-        
+        controller.show();
+        /*
         
         List<String> cantonesSJ = new ArrayList<>();
         Collections.addAll(cantonesSJ, "San Jose", "Escazu", "Desamparados", 
@@ -70,6 +71,7 @@ public class Application {
         
         //View v = new View();
         view.setVisible(true);
+*/
     }
     
 }

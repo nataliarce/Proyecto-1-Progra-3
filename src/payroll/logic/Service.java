@@ -9,6 +9,7 @@ package payroll.logic;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.List;
 import payroll.data.Data;
 import payroll.data.XmlPersister;
 
@@ -50,6 +51,7 @@ public class Service {
     
     public void agregar()
     {
+        coordenadas = new ArrayList<>();
         coordenadas.add(new Rectangle(424,395,62,20)); //San Jose 
         coordenadas.add(new Rectangle(300,132,90,138)); //Alajuela
         coordenadas.add(new Rectangle(459,315,95,52)); //Cartago
@@ -68,14 +70,24 @@ public class Service {
 //        coordenadas.add(new Rectangle(10,404,428,324)); //Normal2
     }
      
-    public Provincia buscar(double x, double y) throws Exception
+    public Provincia buscar(int x, int y) throws Exception
     {
+        
+      //  List<Provincia> listProvincias = data.getProvincia();
+        List<Provincia>listProvincias = new ArrayList<>();
+        listProvincias.add(new Provincia("1","San Jose"));
+        listProvincias.add(new Provincia("2","Alajuela"));
+        listProvincias.add(new Provincia("3","Cartago"));
+        listProvincias.add(new Provincia("4","Heredia"));
+        listProvincias.add(new Provincia("5","Guanacaste"));
+        listProvincias.add(new Provincia("6","Puntarenas"));
+        listProvincias.add(new Provincia("7","Limon"));
       Provincia resultado = null;
-      for (int i=0;i<coordenadas.size();i++)
+      for (int i=0;i<7;i++)
       {
           if (coordenadas.get(i).contains(x,y))
           {
-              resultado = this.data.getProvincia().get(i+1);
+              resultado = listProvincias.get(i);
               return resultado;
           }
       }

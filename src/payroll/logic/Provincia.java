@@ -5,6 +5,7 @@
  */
 package payroll.logic;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -16,17 +17,18 @@ import javax.xml.bind.annotation.XmlID;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Provincia
 {
-    @XmlID
+  //  @XmlID
     private String numero;
     private String nombre;
-    private ArrayList<Canton> arrayCanton;
-
+    //private List<Canton> arrayCanton;
+   // private ArrayList<Canton> arrayCanton;
+/*
     public Provincia(String numero, String nombre, ArrayList<Canton> arrayCanton) {
         this.numero = numero;
         this.nombre = nombre;
         this.arrayCanton = arrayCanton;
     }
-
+*/
     public Provincia(String numero, String nombre) {
         this.numero = numero;
         this.nombre = nombre;
@@ -54,13 +56,13 @@ public class Provincia
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public ArrayList<Canton> getArrayCanton() {
+/*
+    public List<Canton> getArrayCanton() {
         return arrayCanton;
     }
 
-    public void setArrayCanton(ArrayList<Canton> arrayCanton) {
+    public void setArrayCanton(List<Canton> arrayCanton) {
         this.arrayCanton = arrayCanton;
-    }
+    }*/
     
 }
