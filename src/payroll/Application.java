@@ -7,6 +7,8 @@ package payroll;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import payroll.presentation.principal.Controller;
+import payroll.presentation.principal.Model;
 import payroll.presentation.principal.View;
 /**
  *
@@ -24,7 +26,12 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        View view = new View();
+        Model model = new Model();
+            
+        Controller controller = new Controller(model, view);
+        
         
         List<String> cantonesSJ = new ArrayList<>();
         Collections.addAll(cantonesSJ, "San Jose", "Escazu", "Desamparados", 
@@ -61,8 +68,8 @@ public class Application {
         
         
         
-        View v = new View();
-        v.setVisible(true);
+        //View v = new View();
+        view.setVisible(true);
     }
     
 }

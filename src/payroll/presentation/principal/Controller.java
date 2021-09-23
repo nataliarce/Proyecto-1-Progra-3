@@ -40,12 +40,22 @@ public class Controller  {
     }
     public Provincia consultarCoordenadas(double x,double y)
     {
-       
-        Provincia result = Service.instance().buscar(x,y);
+     
+        try
+        {
+            Provincia result = Service.instance().buscar(x,y);
         model.setProvincia(result);
         model.commit();
         return result;
-   
+        }
+        
+        catch (Exception e)
+                {
+                    model.setProvincia(new Provincia());
+                    model.commit();
+                }
+        return null;
+        
     }
     // Controller methods that respond to View events
     // probably invoke methods from Service,

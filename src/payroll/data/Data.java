@@ -21,23 +21,23 @@ import payroll.logic.Provincia;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
-    private List<Cliente> clientes;    
-    private List<Prestamo> prestamo;     
+    //private List<Cliente> clientes;    
+    //private List<Prestamo> prestamo;     
     private List<Provincia> provincia;
 
     public Data() {
-        clientes = new ArrayList<>();
-        prestamo = new ArrayList<>();
+        //clientes = new ArrayList<>();
+        //prestamo = new ArrayList<>();
         provincia = new ArrayList<>();
     }
 
-    public List<Prestamo> getPrestamo() {
-        return prestamo;
-    }
-
-    public void setPrestamo(List<Prestamo> prestamo) {
-        this.prestamo = prestamo;
-    }
+//    public List<Prestamo> getPrestamo() {
+//        return prestamo;
+//    }
+//
+//    public void setPrestamo(List<Prestamo> prestamo) {
+//        this.prestamo = prestamo;
+//    }
 
     public List<Provincia> getProvincia() {
         return provincia;
@@ -47,22 +47,22 @@ public class Data {
         this.provincia = provincia;
     }
 
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-    public List<Prestamo> getFacturas() {
-        return prestamo;
-    }
-
-    public void setFacturas(List<Prestamo> prestamo) {
-        this.prestamo = prestamo;
-    }
-    
-    
+//    public List<Cliente> getClientes() {
+//        return clientes;
+//    }
+//
+//    public void setClientes(List<Cliente> clientes) {
+//        this.clientes = clientes;
+//    }
+//
+//    public List<Prestamo> getFacturas() {
+//        return prestamo;
+//    }
+//
+//    public void setFacturas(List<Prestamo> prestamo) {
+//        this.prestamo = prestamo;
+//    }
+//    
+//    
 
 }

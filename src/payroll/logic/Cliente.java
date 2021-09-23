@@ -8,6 +8,10 @@ package payroll.logic;
 import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
+
 /**
  *
  * Autores:
@@ -20,13 +24,17 @@ public class Cliente {
     @XmlID
     private String cedula;
     private String nombre;
-    private String canton;
-    private String distrito;
+    @XmlIDREF
+    private Provincia provincia;
+    private Canton canton;
+    private Distrito distrito;
     private ArrayList<Prestamo> prestamos; 
 
-    public Cliente(String cedula, String nombre, String canton, String distrito) {
+    public Cliente(String cedula, String nombre, Provincia provincia, 
+            Canton canton, Distrito distrito) {
         this.cedula = cedula;
         this.nombre = nombre;
+        this.provincia = provincia;
         this.canton = canton;
         this.distrito = distrito;
     }
@@ -34,8 +42,9 @@ public class Cliente {
     public Cliente() {
         this.cedula = "";
         this.nombre = "";
-        this.canton = "";
-        this.distrito = "";
+        this.provincia = new Provincia();
+        this.canton = new Canton();
+        this.distrito = new Distrito();
         
     }
     
@@ -56,19 +65,27 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getCanton() {
+    public Provincia getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
+    }
+
+    public Canton getCanton() {
         return canton;
     }
 
-    public void setCanton(String canton) {
+    public void setCanton(Canton canton) {
         this.canton = canton;
     }
 
-    public String getDistrito() {
+    public Distrito getDistrito() {
         return distrito;
     }
 
-    public void setDistrito(String distrito) {
+    public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
 

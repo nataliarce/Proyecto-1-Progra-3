@@ -5,16 +5,39 @@
  */
 package payroll.logic;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 
 /**
  *
  * @author Michelle
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Provincia
 {
+    @XmlID
     private String numero;
     private String nombre;
     private ArrayList<Canton> arrayCanton;
+
+    public Provincia(String numero, String nombre, ArrayList<Canton> arrayCanton) {
+        this.numero = numero;
+        this.nombre = nombre;
+        this.arrayCanton = arrayCanton;
+    }
+
+    public Provincia(String numero, String nombre) {
+        this.numero = numero;
+        this.nombre = nombre;
+    }
+
+    public Provincia() {
+        this.numero = "";
+        this.nombre = "";
+    }
+    
+    
 
     public String getNumero() {
         return numero;

@@ -48,7 +48,7 @@ public class Service {
        agregar();
     }
     
-    public void agregar ()
+    public void agregar()
     {
         coordenadas.add(new Rectangle(424,395,62,20)); //San Jose 
         coordenadas.add(new Rectangle(300,132,90,138)); //Alajuela
@@ -68,17 +68,17 @@ public class Service {
 //        coordenadas.add(new Rectangle(10,404,428,324)); //Normal2
     }
      
-    public Provincia buscar(double x, double y)
+    public Provincia buscar(double x, double y) throws Exception
     {
       Provincia resultado = null;
       for (int i=0;i<coordenadas.size();i++)
       {
           if (coordenadas.get(i).contains(x,y))
           {
-              resultado = this.data.getProvincia().get(i);
+              resultado = this.data.getProvincia().get(i+1);
               return resultado;
           }
       }
-      return resultado;
+      throw new Exception("Provincia no existe");
     }               
 }

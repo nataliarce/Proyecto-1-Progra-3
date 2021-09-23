@@ -45,7 +45,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Provincia provincia = model.getProvincia();
+         if(provincia.getNombre() == "")
+         {
+             Provincias.setIcon(pro[0]);
+         }
     }
     
 //************** END MVC ***********
