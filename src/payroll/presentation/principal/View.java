@@ -55,7 +55,16 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
          Cliente cliente = model.getCliente();
          cedula.setText(cliente.getCedula());
          nombre.setText(cliente.getNombre());
-         provincia.setText(cliente.getProvincia().toString());         
+         provincia.setText(cliente.getProvincia().toString());      
+         if(cliente.getCedula().isEmpty())
+         {
+             Provincias.setIcon(pro[0]);
+         }
+         else
+         {
+             int i = Integer.parseInt(cliente.getCedula().substring(0,1));
+             Provincias.setIcon(pro[i]);
+         }
     }
     
 //************** END MVC ***********
