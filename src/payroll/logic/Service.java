@@ -57,7 +57,7 @@ public class Service {
         coordenadas.add(new Rectangle(459,315,95,52)); //Cartago
         coordenadas.add(new Rectangle(400,145,50,94)); //Heredia
         coordenadas.add(new Rectangle(80,159,124,44)); //Guanacaste
-        coordenadas.add(new Rectangle(555,456,58,39));  //Puntarenas
+        coordenadas.add(new Rectangle(547,511,121,74));  //Puntarenas
         coordenadas.add(new Rectangle(588,329,72,106)); //Limon
        
 //        coordenadas.add(new Rectangle(318,333,89,49)); //San Jose2
