@@ -59,6 +59,7 @@ public class Service {
         coordenadas.add(new Rectangle(80,159,124,44)); //Guanacaste
         coordenadas.add(new Rectangle(547,511,121,74));  //Puntarenas
         coordenadas.add(new Rectangle(588,329,72,106)); //Limon
+
        
 //        coordenadas.add(new Rectangle(318,333,89,49)); //San Jose2
 //        coordenadas.add(new Rectangle(188,91,168,35)); //Alajuela2     
@@ -73,21 +74,12 @@ public class Service {
     public Provincia buscar(int x, int y) throws Exception
     {
         
-      //  List<Provincia> listProvincias = data.getProvincia();
-        List<Provincia>listProvincias = new ArrayList<>();
-        listProvincias.add(new Provincia("1","San Jose"));
-        listProvincias.add(new Provincia("2","Alajuela"));
-        listProvincias.add(new Provincia("3","Cartago"));
-        listProvincias.add(new Provincia("4","Heredia"));
-        listProvincias.add(new Provincia("5","Guanacaste"));
-        listProvincias.add(new Provincia("6","Puntarenas"));
-        listProvincias.add(new Provincia("7","Limon"));
       Provincia resultado = null;
       for (int i=0;i<7;i++)
       {
           if (coordenadas.get(i).contains(x,y))
           {
-              resultado = listProvincias.get(i);
+              resultado = this.data.getProvincia().get(i);
               return resultado;
           }
       }

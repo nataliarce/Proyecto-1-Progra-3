@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package payroll.presentation.principal;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import payroll.logic.Cliente;
-import javax.swing.ImageIcon;
 import payroll.logic.Provincia;
 import payroll.logic.Service;
 /**
@@ -44,7 +39,7 @@ public class Controller  {
      
         try
         {
-            Provincia result = Service.instance().buscar(x,y);
+        Provincia result = Service.instance().buscar(x,y);
         model.setProvincia(result);
         model.commit();
         return result;

@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package payroll.logic;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -17,7 +15,7 @@ import javax.xml.bind.annotation.XmlID;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Provincia
 {
-  //  @XmlID
+    @XmlID
     private String numero;
     private String nombre;
     //private List<Canton> arrayCanton;

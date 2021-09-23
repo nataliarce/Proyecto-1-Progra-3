@@ -23,12 +23,12 @@ import payroll.logic.Provincia;
 public class Data {
     //private List<Cliente> clientes;    
     //private List<Prestamo> prestamo;     
-    private List<Provincia> provincia;
+    private List<Provincia> provincias;
 
     public Data() {
         //clientes = new ArrayList<>();
         //prestamo = new ArrayList<>();
-        provincia = new ArrayList<>();
+        provincias = new ArrayList<>();
     }
 
 //    public List<Prestamo> getPrestamo() {
@@ -40,11 +40,11 @@ public class Data {
 //    }
 
     public List<Provincia> getProvincia() {
-        return provincia;
+        return provincias;
     }
 
-    public void setProvincia(List<Provincia> provincia) {
-        this.provincia = provincia;
+    public void setProvincia(List<Provincia> provincias) {
+        this.provincias = provincias;
     }
 
 //    public List<Cliente> getClientes() {
