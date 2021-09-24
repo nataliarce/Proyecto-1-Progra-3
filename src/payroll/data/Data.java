@@ -58,9 +58,7 @@ public class Data {
     public void setCantones(List<Canton> cantones) {
         this.cantones = cantones;
     }
-    
-    
-
+   
     public List<Cliente> getClientes() {
         return clientes;
     }

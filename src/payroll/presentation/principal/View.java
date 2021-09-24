@@ -53,11 +53,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
          {
              provinciasMapa.setIcon(pro[0]);
          }
+         
          List<Canton> canton = model.getCanton();
          Cliente cliente = model.getCliente();
          cedula.setText(cliente.getCedula());
          nombre.setText(cliente.getNombre());
-         provinciaText.setText(cliente.getProvincia().toString());      
+//         provinciaText.setText(cliente.getProvincia().toString());      
          if(cliente.getCedula().isEmpty())
          {
              provinciasMapa.setIcon(pro[0]);
@@ -66,6 +67,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
          {
              int i = Integer.parseInt(cliente.getCedula().substring(0,1));
              provinciasMapa.setIcon(pro[i]);
+             provinciaText.setText(cliente.getProvincia().toString());
          }
     }
     
@@ -245,7 +247,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void provinciasMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinciasMapaMouseClicked
         // TODO add your handling code here:
-                Provincia prov = controller.consultarCoordenadas(evt.getX(), evt.getY());
+        Provincia prov = controller.consultarCoordenadas(evt.getX(), evt.getY());
         if(prov != null)
         {
             int numProvincia = Integer.parseInt(prov.getNumero());
@@ -258,7 +260,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
  
             for (int i = 0;i<nombreCanton.length;i++)
             {
-                nombreCanton[i] = canton.get(i).getNombre();
+                nombreCanton[i] = canton.get(i).getNumero();
             }
             
             cantonCB.setModel(new javax.swing.DefaultComboBoxModel<>(nombreCanton));
@@ -269,8 +271,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         {
             provinciaText.setText(" ");
             provinciasMapa.setIcon(pro[0]);
-            cantonCB.removeAllItems();
-            cantonCB.setSelectedIndex(-1);
         }
     }//GEN-LAST:event_provinciasMapaMouseClicked
 

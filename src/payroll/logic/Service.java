@@ -72,21 +72,6 @@ public class Service {
 //        coordenadas.add(new Rectangle(10,404,428,324)); //Normal2
     }
      
-    public Provincia buscar(int x, int y) throws Exception
-    {
-        
-      Provincia resultado = null;
-      for (int i=0;i<7;i++)
-      {
-          if (coordenadas.get(i).contains(x,y))
-          {
-              resultado = this.data.getProvincia().get(i);
-              return resultado;
-          }
-      }
-      throw new Exception("Provincia no existe");
-    }  
-    
     public Cliente buscarClientePorCedula(String cedula) throws Exception
     {
         Cliente result = data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
@@ -122,15 +107,24 @@ public class Service {
         return data.getClientes();       
     }
     
+    
+        public Provincia buscar(int x, int y) throws Exception
+    {
+        
+      Provincia resultado = null;
+      for (int i=0;i<7;i++)
+      {
+          if (coordenadas.get(i).contains(x,y))
+          {
+              resultado = this.data.getProvincia().get(i);
+              return resultado;
+          }
+      }
+      throw new Exception("Provincia no existe");
+    }  
+    
         public List<Canton> buscarCanton(String text) throws Exception
     {
-//        List<Canton> prueba = new ArrayList<>();
-//        
-//        prueba.add(new Canton("1","Acosta"));
-//        prueba.add(new Canton("2","Alajuelita"));
-//        prueba.add(new Canton("3","Aserri"));
-//        prueba.add(new Canton("4","Curridabat"));
-//        
         List<Canton> resultado = null;
         for (int i=0;i<data.getProvincia().size();i++)
         {
