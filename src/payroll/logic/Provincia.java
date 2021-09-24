@@ -22,18 +22,18 @@ public class Provincia
     private String numero;
     private String nombre;
     @XmlIDREF
-    private List<Canton> arrayCanton;
+    private List<Canton> cantones;
     
     public Provincia(String numero, String nombre, List<Canton> arrayCanton) {
         this.numero = numero;
         this.nombre = nombre;
-        this.arrayCanton = arrayCanton;
+        this.cantones = arrayCanton;
     }
 
     public Provincia() {
         this.numero = "";
         this.nombre = "";
-        this.arrayCanton = new ArrayList<>();
+        this.cantones = new ArrayList<>();
     }
     
     
@@ -54,11 +54,11 @@ public class Provincia
     }
 
     public List<Canton> getArrayCanton() {
-        return arrayCanton;
+        return cantones;
     }
 
     public void setArrayCanton(List<Canton> arrayCanton) {
-        this.arrayCanton = arrayCanton;
+        this.cantones = arrayCanton;
     }
     
 }

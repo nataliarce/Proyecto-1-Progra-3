@@ -25,6 +25,7 @@ public class Model extends Observable{
     private Cliente cliente;
     private Provincia provincia;
     private List<Canton> canton;
+    private List<Cliente> clientes;
 
     public Cliente getCliente() {
         return cliente;
@@ -32,6 +33,14 @@ public class Model extends Observable{
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
 
     public Provincia getProvincia() {

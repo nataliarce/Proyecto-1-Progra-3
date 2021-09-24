@@ -31,7 +31,7 @@ public class Data {
         clientes = new ArrayList<>();
         //prestamo = new ArrayList<>();
         provincias = new ArrayList<>();
-        cantones = new ArrayList();
+        cantones = new ArrayList<>();
         
     }
 

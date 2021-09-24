@@ -100,6 +100,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         provinciaText = new javax.swing.JTextField();
         distritoCB = new javax.swing.JComboBox<>();
         ConsultarBtn = new javax.swing.JButton();
+        GuardarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,6 +144,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
+        GuardarBtn.setText("Guardar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,7 +160,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addComponent(textFieldNombre))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(239, 239, 239)
+                                .addComponent(GuardarBtn))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(90, 90, 90)
@@ -184,11 +190,16 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                     .addComponent(textFieldCedula)
                     .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ConsultarBtn))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldNombre)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldNombre)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(GuardarBtn)))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldProvincia)
                     .addComponent(textFieldCanton)
@@ -300,6 +311,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConsultarBtn;
+    private javax.swing.JButton GuardarBtn;
     private javax.swing.JComboBox<String> cantonCB;
     private javax.swing.JTextField cedula;
     private javax.swing.JComboBox<String> distritoCB;

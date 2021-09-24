@@ -10,6 +10,7 @@ package payroll.logic;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import payroll.data.Data;
 import payroll.data.XmlPersister;
 
@@ -88,23 +89,37 @@ public class Service {
     
     public Cliente buscarClientePorCedula(String cedula) throws Exception
     {
-        Cliente result = null;
-        for(Cliente c : this.data.getClientes())
-        {
-            if(c.getCedula().equals(cedula))
+        Cliente result = data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
+        //for(Cliente c : this.data.getClientes())
+        //{
+            if (result != null)//if(c.getCedula().equals(cedula))
             {
-                result = c;
-                break;
+                return result;//result = c;
             }
-        }
-        if(result!=null)
-        {
-            return result;
-        }
-        else
-        {
+       // }
+//        if(result!=null)
+//        {
+//            return result;
+//        }
+        //else
+        //{
             throw new Exception("Cliente no encontrado");
-        }
+       // }
+    }
+    
+    public Cliente clienteGet(String cedula) throws Exception{
+        Cliente result=data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
+        if (result!=null) return result;
+        else throw new Exception("Cliente no existe");   
+    }
+      
+    public List<Cliente> clienteSearch(String cedula){
+        List<Cliente> result=data.getClientes().stream().filter(c->c.getCedula().startsWith(cedula)).collect(Collectors.toList());
+       return result;        
+    }
+  
+    public List<Cliente> clienteAll(){
+        return data.getClientes();       
     }
     
         public List<Canton> buscarCanton(String text) throws Exception
@@ -115,7 +130,7 @@ public class Service {
 //        prueba.add(new Canton("2","Alajuelita"));
 //        prueba.add(new Canton("3","Aserri"));
 //        prueba.add(new Canton("4","Curridabat"));
-        
+//        
         List<Canton> resultado = null;
         for (int i=0;i<data.getProvincia().size();i++)
         {

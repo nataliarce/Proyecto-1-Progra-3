@@ -27,6 +27,9 @@ public class Controller  {
         this.view = view;
       //  this.model.setCliente(new Cliente());
       this.model.setProvincia(new Provincia());
+      this.model.setCanton(new ArrayList<>());
+      this.model.setCliente(new Cliente());
+      this.model.setClientes(new ArrayList<>());
 
         // invoke Model sets for initialization before linking to the view
         // problably get the data from Service
