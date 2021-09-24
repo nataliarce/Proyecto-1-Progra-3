@@ -24,10 +24,10 @@ public class Provincia
     @XmlIDREF
     private List<Canton> cantones;
     
-    public Provincia(String numero, String nombre, List<Canton> arrayCanton) {
+    public Provincia(String numero, String nombre, List<Canton> cantones) {
         this.numero = numero;
         this.nombre = nombre;
-        this.cantones = arrayCanton;
+        this.cantones = cantones;
     }
 
     public Provincia() {

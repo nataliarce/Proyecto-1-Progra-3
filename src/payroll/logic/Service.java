@@ -5,7 +5,6 @@
  */
 package payroll.logic;
 
-//da servicio a cualquiera de las pantallas, para diferentes peticiones como pagos 
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -72,24 +71,16 @@ public class Service {
 //        coordenadas.add(new Rectangle(10,404,428,324)); //Normal2
     }
      
+    //****************Cliente***********************************
     public Cliente buscarClientePorCedula(String cedula) throws Exception
     {
         Cliente result = data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
-        //for(Cliente c : this.data.getClientes())
-        //{
-            if (result != null)//if(c.getCedula().equals(cedula))
+
+            if (result != null)
             {
-                return result;//result = c;
+                return result;
             }
-       // }
-//        if(result!=null)
-//        {
-//            return result;
-//        }
-        //else
-        //{
             throw new Exception("Cliente no encontrado");
-       // }
     }
     
     public Cliente clienteGet(String cedula) throws Exception{
@@ -107,7 +98,7 @@ public class Service {
         return data.getClientes();       
     }
     
-    
+    //*******************Provincia*************************************
         public Provincia buscar(int x, int y) throws Exception
     {
         
@@ -123,20 +114,36 @@ public class Service {
       throw new Exception("Provincia no existe");
     }  
     
-        public List<Canton> buscarCanton(String text) throws Exception
+     //*********************Canton***********************************
+    public List<Canton> buscarCanton(String provincia) throws Exception
     {
         List<Canton> resultado = null;
         for (int i=0;i<data.getProvincia().size();i++)
         {
-             if (text != null)
+             if (!" ".equals(provincia))
              {
-                  resultado = this.data.getCantones();
+                  resultado = this.data.getProvincia().get(i).getArrayCanton();
                   return resultado;
              }
+//              List<Cliente> result=data.getClientes().stream().filter(c->c.getCedula().startsWith(cedula)).collect(Collectors.toList());
+//       return result;        
         }
 
         throw new Exception("Canton no existe");
     }
+        //********************************************************
+        public void store()
+    {
+        try 
+        {
+            XmlPersister.instance().store(data);
+        } 
+        catch (Exception ex) 
+        {
+        }
+    }
+    
+        
 }
 
 

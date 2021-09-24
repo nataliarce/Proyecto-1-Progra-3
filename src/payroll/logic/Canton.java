@@ -20,6 +20,7 @@ public class Canton
     @XmlID
     private String numero;
     private String nombre;
+    //XmlIDREF
     //private ArrayList<Distrito> arrayDistrito;
 
     public Canton(String numero, String nombre) 
