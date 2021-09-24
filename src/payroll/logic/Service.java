@@ -106,4 +106,29 @@ public class Service {
             throw new Exception("Cliente no encontrado");
         }
     }
+    
+        public List<Canton> buscarCanton(String text) throws Exception
+    {
+//        List<Canton> prueba = new ArrayList<>();
+//        
+//        prueba.add(new Canton("1","Acosta"));
+//        prueba.add(new Canton("2","Alajuelita"));
+//        prueba.add(new Canton("3","Aserri"));
+//        prueba.add(new Canton("4","Curridabat"));
+        
+        List<Canton> resultado = null;
+        for (int i=0;i<data.getProvincia().size();i++)
+        {
+             if (text != null)
+             {
+                  resultado = this.data.getCantones();
+                  return resultado;
+             }
+        }
+
+        throw new Exception("Canton no existe");
+    }
 }
+
+
+

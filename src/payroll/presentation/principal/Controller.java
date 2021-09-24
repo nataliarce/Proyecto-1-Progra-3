@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package payroll.presentation.principal;
+import java.util.ArrayList;
+import java.util.List;
+import payroll.logic.Canton;
 import payroll.logic.Cliente;
 import payroll.logic.Provincia;
 import payroll.logic.Service;
@@ -53,7 +56,23 @@ public class Controller  {
         }
         return null;    
     }
-    
+        public List<Canton> consultarCanton(String text)
+    {
+        try 
+        {
+            List<Canton> result= Service.instance().buscarCanton(text);
+            model.setCanton(result);
+            model.commit();
+            return result;
+        }
+        
+        catch (Exception e)
+        {
+            model.setCanton(new ArrayList<>());
+            model.commit();
+        }
+        return null;
+    }
     public void consultarClientePorCedula(String cedula)
     {
         try

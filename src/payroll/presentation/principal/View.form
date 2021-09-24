@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Provincias" min="-2" pref="850" max="-2" attributes="0"/>
+                  <Component id="provinciasMapa" min="-2" pref="850" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="textFieldCedula" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -45,16 +45,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="textFieldProvincia" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="provincia" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="provinciaText" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="textFieldCanton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="canton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cantonCB" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="distrito" min="-2" max="-2" attributes="0"/>
+                          <Component id="distritoCB" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldDistrito" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -85,19 +85,19 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="canton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="provincia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="distrito" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cantonCB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="provinciaText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="distritoCB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
-              <Component id="Provincias" min="-2" pref="750" max="-2" attributes="0"/>
+              <Component id="provinciasMapa" min="-2" pref="750" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="Provincias">
+    <Component class="javax.swing.JLabel" name="provinciasMapa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/payroll/presentation/imagenes/mapa0.png"/>
@@ -107,8 +107,9 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Provincias"/>
       </AccessibilityProperties>
       <Events>
-        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="ProvinciasMouseMoved"/>
-        <EventHandler event="componentMoved" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="ProvinciasComponentMoved"/>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="provinciasMapaMouseMoved"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="provinciasMapaMouseClicked"/>
+        <EventHandler event="componentMoved" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="provinciasMapaComponentMoved"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="textFieldCedula">
@@ -140,7 +141,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="nombre">
     </Component>
-    <Component class="javax.swing.JComboBox" name="canton">
+    <Component class="javax.swing.JComboBox" name="cantonCB">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -155,9 +156,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="provincia">
+    <Component class="javax.swing.JTextField" name="provinciaText">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="distrito">
+    <Component class="javax.swing.JComboBox" name="distritoCB">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
