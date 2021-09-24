@@ -118,11 +118,11 @@ public class Service {
     public List<Canton> buscarCanton(String provincia) throws Exception
     {
         List<Canton> resultado = null;
-        for (int i=0;i<data.getProvincia().size();i++)
+        for (Provincia p: this.data.getProvincia())
         {
-             if (!" ".equals(provincia))
+             if (!" ".equals(provincia) && p.getNombre().equals(provincia))
              {
-                  resultado = this.data.getProvincia().get(i).getArrayCanton();
+                  resultado = p.getArrayCanton();
                   return resultado;
              }
 //              List<Cliente> result=data.getClientes().stream().filter(c->c.getCedula().startsWith(cedula)).collect(Collectors.toList());
