@@ -13,6 +13,7 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
+import payroll.logic.Distrito;
 import payroll.logic.Provincia;
 
 /**
@@ -54,11 +55,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
              provinciasMapa.setIcon(pro[0]);
          }
          
-         List<Canton> canton = model.getCanton();
+         List<Canton> canton = model.getCantones();
+         List<Distrito> distritos = model.getDistritos();
          Cliente cliente = model.getCliente();
          cedula.setText(cliente.getCedula());
-         nombre.setText(cliente.getNombre());
-//         provinciaText.setText(cliente.getProvincia().toString());      
+         nombre.setText(cliente.getNombre());    
          if(cliente.getCedula().isEmpty())
          {
             provinciasMapa.setIcon(pro[0]);
@@ -228,12 +229,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void provinciasMapaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinciasMapaMouseMoved
         
         Provincia prov = controller.consultarCoordenadas(evt.getX(), evt.getY());
-        if(prov != null){
-            
-        
-        int numProvincia = Integer.parseInt(prov.getNumero());
-        
-        provinciasMapa.setIcon(pro[numProvincia]);
+        if(prov != null)
+        {
+            int numProvincia = Integer.parseInt(prov.getNumero());
+
+            provinciasMapa.setIcon(pro[numProvincia]);
         }
         else
         {
@@ -255,17 +255,27 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             provinciasMapa.setIcon(pro[numProvincia]);
             
             List<Canton> canton = controller.consultarCanton(provinciaText.getText());
+           // List<Distrito> distrito = controller.consultarDistrito(cantonCB.getSelectedItem().toString());
             
             String nombreCanton[] = new String[canton.size()];
- 
-            for (int i = 0;i<nombreCanton.length;i++)
+            //String nombreDistrito[] = new String[distrito.size()];
+            
+            for (int i = 0 ; i<nombreCanton.length ; i++)
             {
-                nombreCanton[i] = canton.get(i).getNumero();
+                nombreCanton[i] = canton.get(i).getNombre();
             }
             
             cantonCB.setModel(new javax.swing.DefaultComboBoxModel<>(nombreCanton));
             cantonCB.setSelectedItem(cantonCB.getSelectedItem());
             cantonCB.setSelectedIndex(-1);
+            
+//            for(int i = 0; i < nombreDistrito.length; i++)
+//            {
+//                nombreDistrito[i] = distrito.get(i).getNombre();
+//            }
+//            distritoCB.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDistrito));
+//            distritoCB.setSelectedItem(distritoCB.getSelectedItem());
+//            distritoCB.setSelectedIndex(-1);
         }
         else 
         {

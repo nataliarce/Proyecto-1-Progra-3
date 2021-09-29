@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
+import payroll.logic.Distrito;
 import payroll.logic.Provincia;
 
 
@@ -24,7 +25,8 @@ public class Model extends Observable{
     
     private Cliente cliente;
     private Provincia provincia;
-    private List<Canton> canton;
+    private List<Canton> cantones;
+    private List<Distrito> distritos;
     private List<Cliente> clientes;
 
     public Cliente getCliente() {
@@ -51,13 +53,22 @@ public class Model extends Observable{
         this.provincia = provincia;
     }
     
-    public List<Canton> getCanton() {
-        return canton;
+    public List<Canton> getCantones() {
+        return cantones;
     }
 
-    public void setCanton(List<Canton> canton) {
-        this.canton = canton;
+    public void setCanton(List<Canton> cantones) {
+        this.cantones = cantones;
     }
+
+    public List<Distrito> getDistritos() {
+        return distritos;
+    }
+
+    public void setDistritos(List<Distrito> distritos) {
+        this.distritos = distritos;
+    }
+    
 
 
     @Override

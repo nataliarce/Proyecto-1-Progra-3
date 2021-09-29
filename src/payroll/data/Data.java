@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
+import payroll.logic.Distrito;
 import payroll.logic.Prestamo;
 import payroll.logic.Provincia;
 
@@ -25,13 +26,14 @@ public class Data {
     private List<Cliente> clientes;    
     //private List<Prestamo> prestamo;     
     private List<Provincia> provincias;
-    //private List<Canton> cantones;
+    private List<Canton> cantones;
+    private List<Distrito> distritos;
 
     public Data() {
         clientes = new ArrayList<>();
-        //prestamo = new ArrayList<>();
+        cantones = new ArrayList<>();
         provincias = new ArrayList<>();
-
+        distritos = new ArrayList<>();
         
     }
 
@@ -51,13 +53,21 @@ public class Data {
         this.provincias = provincias;
     }
 
-//    public List<Canton> getCantones() {
-//        return cantones;
-//    }
-//
-//    public void setCantones(List<Canton> cantones) {
-//        this.cantones = cantones;
-//    }
+    public List<Canton> getCantones() {
+        return cantones;
+    }
+
+    public void setCantones(List<Canton> cantones) {
+        this.cantones = cantones;
+    }
+
+    public List<Distrito> getDistritos() {
+        return distritos;
+    }
+
+    public void setDistritos(List<Distrito> distritos) {
+        this.distritos = distritos;
+    }
    
     public List<Cliente> getClientes() {
         return clientes;

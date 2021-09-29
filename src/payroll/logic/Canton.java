@@ -21,8 +21,8 @@ public class Canton
     @XmlID
     private String numero;
     private String nombre;
-    //XmlIDREF
-    //private ArrayList<Distrito> arrayDistrito;
+    @XmlIDREF
+    private ArrayList<Distrito> arrayDistrito;
 
     public Canton(String numero, String nombre) 
     {
@@ -51,12 +51,17 @@ public class Canton
         this.nombre = nombre;
     }
 
-//    public ArrayList<Distrito> getArrayDistrito() {
-//        return arrayDistrito;
-//    }
-//
-//    public void setArrayDistrito(ArrayList<Distrito> arrayDistrito) {
-//        this.arrayDistrito = arrayDistrito;
-//    }
+    public ArrayList<Distrito> getArrayDistrito() {
+        return arrayDistrito;
+    }
+
+    public void setArrayDistrito(ArrayList<Distrito> arrayDistrito) {
+        this.arrayDistrito = arrayDistrito;
+    }
+
+    @Override
+    public String toString() {
+        return  nombre;
+    }
     
 }

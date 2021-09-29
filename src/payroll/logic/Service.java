@@ -115,38 +115,34 @@ public class Service {
     }  
     
      //*********************Canton***********************************
-    public List<Canton> buscarCanton(String provincia) throws Exception
+    public List<Canton> buscarCanton(String nombreProvincia) throws Exception
     {
         List<Canton> resultado = null;
         for (Provincia p: this.data.getProvincia())
         {
-             if (!" ".equals(provincia) && p.getNombre().equals(provincia))
+             if (!" ".equals(nombreProvincia) && p.getNombre().equals(nombreProvincia))
              {
                   resultado = p.getArrayCanton();
                   return resultado;
              }
-             System.out.println(resultado);
         }
-
         throw new Exception("Canton no existe");
     }
         
+    public List<Distrito> buscarDistrito(String nombreCanton) throws Exception
+    {
+        List<Distrito> resultado = null;
+        for(Canton c: this.data.getCantones())
+        {
+            if (!" ".equals(nombreCanton) && c.getNombre().equals(nombreCanton))
+             {
+                  resultado = c.getArrayDistrito();
+                  return resultado;
+             }
+        }
+        throw new Exception("Distrito no existe");
+    }
         
-//    public List<Canton> buscarCanton(String numProvincia) throws Exception
-//    {
-//        List<Canton> resultado = null;
-//        for (Provincia p: this.data.getProvincia())
-//        {
-//             if (!" ".equals(numProvincia) && p.getNumero().equals(numProvincia))
-//             {
-//                  resultado = p.getArrayCanton();
-//                  return resultado;
-//             }
-//             System.out.println(resultado);
-//        }
-//
-//        throw new Exception("Canton no existe");
-//    }
         //********************************************************
         public void store()
     {

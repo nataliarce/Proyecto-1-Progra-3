@@ -5,6 +5,10 @@
  */
 package payroll.logic;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+@XmlAccessorType(XmlAccessType.FIELD)
 
 /**
  *
@@ -12,6 +16,7 @@ package payroll.logic;
  */
 public class Distrito 
 {
+    @XmlID
     private String numero;
     private String nombre;
 

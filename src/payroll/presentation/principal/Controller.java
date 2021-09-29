@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
+import payroll.logic.Distrito;
 import payroll.logic.Provincia;
 import payroll.logic.Service;
 /**
@@ -29,6 +30,7 @@ public class Controller  {
       
         this.model.setProvincia(new Provincia());
         this.model.setCanton(new ArrayList<>());
+        this.model.setDistritos(new ArrayList<>());
         this.model.setCliente(new Cliente());
         this.model.setClientes(new ArrayList<>());
 
@@ -60,11 +62,12 @@ public class Controller  {
         }
         return null;    
     }
-        public List<Canton> consultarCanton(String numProvincia)
+    
+    public List<Canton> consultarCanton(String text)
     {
         try 
         {
-            List<Canton> result= Service.instance().buscarCanton(numProvincia);
+            List<Canton> result= Service.instance().buscarCanton(text);
             model.setCanton(result);
             model.commit();
             return result;
@@ -77,6 +80,25 @@ public class Controller  {
         }
         return null;
     }
+        
+    public List<Distrito> consultarDistrito(String nombreCanton)
+    {
+        try 
+        {
+            List<Distrito> result = Service.instance().buscarDistrito(nombreCanton);
+            model.setDistritos(result);
+            model.commit();
+            return result;
+        }
+        
+        catch (Exception e)
+        {
+            model.setDistritos(new ArrayList<>());
+            model.commit();
+        }
+        return null;
+    }
+    
     public void consultarClientePorCedula(String cedula)
     {
         try
