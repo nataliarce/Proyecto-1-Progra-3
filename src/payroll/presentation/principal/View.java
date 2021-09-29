@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Observable;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
 import payroll.logic.Distrito;
@@ -68,7 +69,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
          {
             int i = Integer.parseInt(cliente.getCedula().substring(0,1));
             provinciasMapa.setIcon(pro[i]);
-            provinciaText.setText(cliente.getProvincia().toString());
+            provincia.setText(cliente.getProvincia().toString());
          }
     }
     
@@ -100,7 +101,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         cedula = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         cantonCB = new javax.swing.JComboBox<>();
-        provinciaText = new javax.swing.JTextField();
+        provincia = new javax.swing.JTextField();
         distritoCB = new javax.swing.JComboBox<>();
         ConsultarBtn = new javax.swing.JButton();
         GuardarBtn = new javax.swing.JButton();
@@ -136,9 +137,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         cantonCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        provinciaText.setEnabled(false);
-
-        distritoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        provincia.setEnabled(false);
 
         ConsultarBtn.setText("Consultar");
         ConsultarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +147,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         });
 
         GuardarBtn.setText("Guardar");
+        GuardarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +178,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textFieldProvincia)
-                            .addComponent(provinciaText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textFieldCanton)
@@ -210,7 +214,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantonCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(provinciaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(distritoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(provinciasMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,14 +255,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         if(prov != null)
         {
             int numProvincia = Integer.parseInt(prov.getNumero());
-            provinciaText.setText(prov.getNombre());
+            provincia.setText(prov.getNombre());
             provinciasMapa.setIcon(pro[numProvincia]);
             
-            List<Canton> canton = controller.consultarCanton(provinciaText.getText());
-           // List<Distrito> distrito = controller.consultarDistrito(cantonCB.getSelectedItem().toString());
+            List<Canton> canton = controller.consultarCanton(provincia.getText());
+           
             
             String nombreCanton[] = new String[canton.size()];
-            //String nombreDistrito[] = new String[distrito.size()];
             
             for (int i = 0 ; i<nombreCanton.length ; i++)
             {
@@ -269,20 +272,34 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             cantonCB.setSelectedItem(cantonCB.getSelectedItem());
             cantonCB.setSelectedIndex(-1);
             
-//            for(int i = 0; i < nombreDistrito.length; i++)
-//            {
-//                nombreDistrito[i] = distrito.get(i).getNombre();
-//            }
-//            distritoCB.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDistrito));
-//            distritoCB.setSelectedItem(distritoCB.getSelectedItem());
-//            distritoCB.setSelectedIndex(-1);
+            List<Distrito> distrito = controller.consultarDistrito(cantonCB.getSelectedItem().toString());
+            String nombreDistrito[] = new String[distrito.size()];
+            for(int i = 0; i < nombreDistrito.length; i++)
+            {
+                nombreDistrito[i] = distrito.get(i).getNombre();
+            }
+            distritoCB.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDistrito));
+            distritoCB.setSelectedItem(distritoCB.getSelectedItem());
+            distritoCB.setSelectedIndex(-1);
         }
         else 
         {
-            provinciaText.setText(" ");
+            provincia.setText(" ");
             provinciasMapa.setIcon(pro[0]);
         }
     }//GEN-LAST:event_provinciasMapaMouseClicked
+
+    private void GuardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBtnActionPerformed
+//        if (cedula.getText().isEmpty() || nombre.getText().isEmpty())
+//        {
+//            JOptionPane.showMessageDialog(this,"Se deben rellenar todos los espacios para agregar un cliente" );
+//        }
+//        else 
+//        {
+////             controller.agregarCliente(new Cliente(cedula.getText(),nombre.getText(),(Provincia)provincia.getText(), 
+////                     (Canton) cantonCB.getSelectedItem(), (Distrito) distritoCB.getSelectedItem()));
+//        }
+    }//GEN-LAST:event_GuardarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,7 +343,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField cedula;
     private javax.swing.JComboBox<String> distritoCB;
     private javax.swing.JTextField nombre;
-    private javax.swing.JTextField provinciaText;
+    private javax.swing.JTextField provincia;
     private javax.swing.JLabel provinciasMapa;
     private javax.swing.JLabel textFieldCanton;
     private javax.swing.JLabel textFieldCedula;

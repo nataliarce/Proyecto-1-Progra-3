@@ -5,6 +5,7 @@
  */
 package payroll.presentation.principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
@@ -111,6 +112,17 @@ public class Controller  {
         {
             model.setCliente(new Cliente());
             model.commit();
+        }
+    }
+    
+    public void agregarCliente(Cliente cliente)
+    {
+        try {
+            Service.instance().agregarCliente(cliente);
+            model.setCliente(new Cliente("","",new Provincia(), new Canton(), new Distrito()));
+            model.commit();
+        } catch (Exception e) {  
+        
         }
     }
     // Controller methods that respond to View events

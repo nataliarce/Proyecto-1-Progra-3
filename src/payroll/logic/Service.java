@@ -98,6 +98,14 @@ public class Service {
         return data.getClientes();       
     }
     
+    public void agregarCliente(Cliente cliente) throws Exception
+    {
+        Cliente old = 
+                data.getClientes().stream().filter(c->c.getCedula().equals(cliente.getCedula())).findFirst().orElse(null);
+        if (old==null) data.getClientes().add(cliente);
+        else throw new Exception("Cliente ya existe en el sistema"); 
+    }
+    
     //*******************Provincia*************************************
         public Provincia buscar(int x, int y) throws Exception
     {
