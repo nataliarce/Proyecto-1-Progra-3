@@ -6,6 +6,7 @@
 package payroll.logic;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -60,5 +61,58 @@ public class Provincia
     public void setArrayCanton(List<Canton> arrayCanton) {
         this.cantones = arrayCanton;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Provincia other = (Provincia) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
+    }
+
+//    @Override
+//    public int hashCode() {
+//        int hash = 7;
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final Provincia other = (Provincia) obj;
+//        if (!Objects.equals(this.numero, other.numero)) {
+//            return false;
+//        }
+//        return true;
+//    }
+    
+    
+    
+    
+    
     
 }

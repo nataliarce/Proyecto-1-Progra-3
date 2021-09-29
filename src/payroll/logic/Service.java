@@ -125,12 +125,28 @@ public class Service {
                   resultado = p.getArrayCanton();
                   return resultado;
              }
-//              List<Cliente> result=data.getClientes().stream().filter(c->c.getCedula().startsWith(cedula)).collect(Collectors.toList());
-//       return result;        
+             System.out.println(resultado);
         }
 
         throw new Exception("Canton no existe");
     }
+        
+        
+//    public List<Canton> buscarCanton(String numProvincia) throws Exception
+//    {
+//        List<Canton> resultado = null;
+//        for (Provincia p: this.data.getProvincia())
+//        {
+//             if (!" ".equals(numProvincia) && p.getNumero().equals(numProvincia))
+//             {
+//                  resultado = p.getArrayCanton();
+//                  return resultado;
+//             }
+//             System.out.println(resultado);
+//        }
+//
+//        throw new Exception("Canton no existe");
+//    }
         //********************************************************
         public void store()
     {

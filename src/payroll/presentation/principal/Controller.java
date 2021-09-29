@@ -25,11 +25,12 @@ public class Controller  {
     {
         this.model = model;
         this.view = view;
-      //  this.model.setCliente(new Cliente());
-      this.model.setProvincia(new Provincia());
-      this.model.setCanton(new ArrayList<>());
-      this.model.setCliente(new Cliente());
-      this.model.setClientes(new ArrayList<>());
+        
+      
+        this.model.setProvincia(new Provincia());
+        this.model.setCanton(new ArrayList<>());
+        this.model.setCliente(new Cliente());
+        this.model.setClientes(new ArrayList<>());
 
         // invoke Model sets for initialization before linking to the view
         // problably get the data from Service
@@ -59,11 +60,11 @@ public class Controller  {
         }
         return null;    
     }
-        public List<Canton> consultarCanton(String text)
+        public List<Canton> consultarCanton(String numProvincia)
     {
         try 
         {
-            List<Canton> result= Service.instance().buscarCanton(text);
+            List<Canton> result= Service.instance().buscarCanton(numProvincia);
             model.setCanton(result);
             model.commit();
             return result;

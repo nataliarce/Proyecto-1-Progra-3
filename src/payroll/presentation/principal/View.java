@@ -61,13 +61,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 //         provinciaText.setText(cliente.getProvincia().toString());      
          if(cliente.getCedula().isEmpty())
          {
-             provinciasMapa.setIcon(pro[0]);
+            provinciasMapa.setIcon(pro[0]);
          }
          else
          {
-             int i = Integer.parseInt(cliente.getCedula().substring(0,1));
-             provinciasMapa.setIcon(pro[i]);
-             provinciaText.setText(cliente.getProvincia().toString());
+            int i = Integer.parseInt(cliente.getCedula().substring(0,1));
+            provinciasMapa.setIcon(pro[i]);
+            provinciaText.setText(cliente.getProvincia().toString());
          }
     }
     
