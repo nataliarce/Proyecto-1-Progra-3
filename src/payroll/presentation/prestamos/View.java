@@ -61,6 +61,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void initComponents() {
 
         regresarBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablePrestamo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -71,6 +73,24 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
+        tablePrestamo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tablePrestamo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePrestamoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablePrestamo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,11 +99,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addContainerGap(289, Short.MAX_VALUE)
                 .addComponent(regresarBtn)
                 .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(254, Short.MAX_VALUE)
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(regresarBtn)
                 .addGap(17, 17, 17))
         );
@@ -95,6 +121,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         // TODO add your handling code here:
         controller.hide();
     }//GEN-LAST:event_regresarBtnActionPerformed
+
+    private void tablePrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePrestamoMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2)
+        {
+            
+        }
+    }//GEN-LAST:event_tablePrestamoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -133,6 +167,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton regresarBtn;
+    private javax.swing.JTable tablePrestamo;
     // End of variables declaration//GEN-END:variables
 }
