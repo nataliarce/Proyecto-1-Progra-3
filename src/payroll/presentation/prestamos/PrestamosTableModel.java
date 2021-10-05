@@ -5,10 +5,13 @@
  */
 package payroll.presentation.prestamos;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import payroll.logic.Prestamo;
+import java.util.Calendar;
 
 /**
  *
@@ -16,7 +19,7 @@ import payroll.logic.Prestamo;
  */
 public class PrestamosTableModel extends AbstractTableModel implements TableModel        
 {
-    String [] cols =  {"Monto","Plazo","Tasa Interes", "Pagos"};
+    String [] cols =  {"Hora","Monto","Plazo","Tasa Interes", "Pagos"};
     List<Prestamo> rows;
     
     public PrestamosTableModel(List<Prestamo> rows)
@@ -48,6 +51,8 @@ public class PrestamosTableModel extends AbstractTableModel implements TableMode
         switch(columnIndex)
         {
             case 0:
+                String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+                System.out.println(timeStamp);
                 return p.getMonto();
             case 1:
                 return p.getPlazo();
