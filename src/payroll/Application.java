@@ -26,11 +26,22 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       
         
-        View view = new View();
-        Model model = new Model();           
-        Controller controller = new Controller(model, view);
-        controller.show();
+        payroll.presentation.prestamos.Model modelPrestamos = new payroll.presentation.prestamos.Model();
+        payroll.presentation.prestamos.View viewPrestamos = new payroll.presentation.prestamos.View();
+        payroll.presentation.prestamos.Controller controllerPrestamos = new payroll.presentation.prestamos.Controller(modelPrestamos, viewPrestamos);
+        PRESTAMOS = controllerPrestamos;
+        
+        payroll.presentation.principal.Model modelPrincipal=new payroll.presentation.principal.Model() ;
+        payroll.presentation.principal.View viewPrincipal = new payroll.presentation.principal.View();
+        payroll.presentation.principal.Controller controllerPrincipal = new payroll.presentation.principal.Controller(modelPrincipal,viewPrincipal);       
+        PRINCIPAL = controllerPrincipal;
+        
+        PRINCIPAL.show();
     }
+    
+    public static payroll.presentation.principal.Controller PRINCIPAL;
+    public static payroll.presentation.prestamos.Controller PRESTAMOS;
     
 }

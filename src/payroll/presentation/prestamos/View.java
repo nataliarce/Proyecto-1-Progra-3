@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package payroll.presentation.prestamos;
+
+import java.util.Observable;
+
 /**
  *
  * Autores:
@@ -11,8 +14,36 @@ package payroll.presentation.prestamos;
  *         Michelle Delgado Meneses
  * 
  */
-public class View extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame implements java.util.Observer {
 
+    //**************  MVC ***********
+    Controller controller;
+    Model model;
+    
+    public void setController(Controller controller){
+        this.controller=controller;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+    
+    public void setModel(Model model){
+        this.model=model;
+        model.addObserver(this);
+    }
+
+    public Model getModel() {
+        return model;
+    }
+    
+    @Override
+    public void update(Observable o, Object arg) 
+    {
+
+    }
+    
+//************** END MVC ***********
     /**
      * Creates new form View
      */
@@ -29,21 +60,41 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        regresarBtn = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        regresarBtn.setText("Regresar");
+        regresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(289, Short.MAX_VALUE)
+                .addComponent(regresarBtn)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(254, Short.MAX_VALUE)
+                .addComponent(regresarBtn)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
+        // TODO add your handling code here:
+        controller.hide();
+    }//GEN-LAST:event_regresarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,6 +131,8 @@ public class View extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton regresarBtn;
     // End of variables declaration//GEN-END:variables
 }

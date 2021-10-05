@@ -5,6 +5,9 @@
  */
 package payroll.presentation.prestamos;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * Autores:
@@ -12,6 +15,19 @@ package payroll.presentation.prestamos;
  *         Michelle Delgado Meneses
  * 
  */
-public class Model {
+public class Model extends Observable
+{
+ 
     
+    
+        @Override
+    public synchronized void addObserver(Observer o) {
+        super.addObserver(o); 
+        this.commit();
+    }
+    
+    public void commit(){
+        this.setChanged();
+        this.notifyObservers();
+    }
 }

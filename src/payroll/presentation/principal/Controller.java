@@ -7,6 +7,7 @@ package payroll.presentation.principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import payroll.Application;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
 import payroll.logic.Distrito;
@@ -46,6 +47,11 @@ public class Controller  {
         this.view.setVisible(true);
     }
     
+    public void hide(){
+        this.view.setVisible(false);
+    }
+    
+    //*************************Provincia***************************************
     public Provincia consultarCoordenadas(int x, int y)
     {   
         try
@@ -63,6 +69,8 @@ public class Controller  {
         }
         return null;    
     }
+    
+    //****************************Canton***************************************
     
     public List<Canton> consultarCanton(String text)
     {
@@ -82,6 +90,7 @@ public class Controller  {
         return null;
     }
         
+    //***************************Distrito***************************************
     public List<Distrito> consultarDistrito(String nombreCanton)
     {
         try 
@@ -100,6 +109,7 @@ public class Controller  {
         return null;
     }
     
+    //***************************Cliente****************************************
     public void consultarClientePorCedula(String cedula)
     {
         try
@@ -125,7 +135,13 @@ public class Controller  {
         
         }
     }
-    // Controller methods that respond to View events
-    // probably invoke methods from Service,
-    // and set data to Model, which in turn causes the View to update 
+    
+    //*************************Prestamos***************************************
+    
+    void mostrarPrestamos()
+    {
+        this.hide();
+        Application.PRESTAMOS.show();
+    }
+
 }
