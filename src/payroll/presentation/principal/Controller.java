@@ -91,11 +91,11 @@ public class Controller  {
     }
         
     //***************************Distrito***************************************
-    public List<Distrito> consultarDistrito(String nombreCanton)
+    public List<Distrito> consultarDistrito(String nombreProvincia, String nombreCanton)
     {
         try 
         {
-            List<Distrito> result = Service.instance().buscarDistrito(nombreCanton);
+            List<Distrito> result = Service.instance().buscarDistrito(nombreProvincia,nombreCanton);
             model.setDistritos(result);
             model.commit();
             return result;

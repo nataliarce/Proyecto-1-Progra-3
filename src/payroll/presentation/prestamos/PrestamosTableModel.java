@@ -48,16 +48,16 @@ public class PrestamosTableModel extends AbstractTableModel implements TableMode
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Prestamo p = rows.get(rowIndex);
+        int i = 0;
         switch(columnIndex)
         {
             case 0:
                 String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
                 System.out.println(timeStamp);
-                return p.getMonto();
             case 1:
-                return p.getPlazo();
+                return i+1;
             case 2:
-                return p.getTasaInteres();
+                return p.getMonto();
             default:
                 return "";
         }

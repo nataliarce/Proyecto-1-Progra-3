@@ -7,6 +7,7 @@ package payroll.presentation.principal;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.awt.Rectangle;
+import java.awt.event.ItemEvent;
 import java.io.IOException;
 import java.util.List;
 import java.util.Observable;
@@ -136,6 +137,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         textFieldDistrito.setText("Distrito");
 
+        cantonCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cantonCBItemStateChanged(evt);
+            }
+        });
+        cantonCB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cantonCBMouseClicked(evt);
+            }
+        });
+
         provincia.setEnabled(false);
 
         ConsultarBtn.setText("Consultar");
@@ -167,36 +179,39 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldCedula)
+                                    .addComponent(textFieldNombre))
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(239, 239, 239)
+                                        .addComponent(GuardarBtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(90, 90, 90)
+                                        .addComponent(ConsultarBtn))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldProvincia)
+                                    .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(65, 65, 65)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldCanton)
+                                    .addComponent(cantonCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(114, 114, 114)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldDistrito)
+                                    .addComponent(distritoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(provinciasMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(prestamos))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldCedula)
-                            .addComponent(textFieldNombre))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(239, 239, 239)
-                                .addComponent(GuardarBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90)
-                                .addComponent(ConsultarBtn))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldProvincia)
-                            .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldCanton)
-                            .addComponent(cantonCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(114, 114, 114)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(distritoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldDistrito))))
-                .addContainerGap())
+                        .addComponent(prestamos)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,17 +303,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             
             cantonCB.setModel(new javax.swing.DefaultComboBoxModel(nombreCanton));
             cantonCB.setSelectedItem(cantonCB.getSelectedItem());
-            cantonCB.setSelectedIndex(-1);
             
-//            List<Distrito> distrito = controller.consultarDistrito(cantonCB.getSelectedItem().toString());
-//            String nombreDistrito[] = new String[distrito.size()];
-//            for(int i = 0; i < nombreDistrito.length; i++)
-//            {
-//                nombreDistrito[i] = distrito.get(i).getNombre();
-//            }
-//            distritoCB.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDistrito));
-//            distritoCB.setSelectedItem(distritoCB.getSelectedItem());
-//            distritoCB.setSelectedIndex(-1);
+
         }
         else 
         {
@@ -325,6 +331,28 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         // TODO add your handling code here:
         controller.mostrarPrestamos();
     }//GEN-LAST:event_prestamosActionPerformed
+
+    private void cantonCBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cantonCBMouseClicked
+        // TODO add your handling code here:
+ 
+
+
+    }//GEN-LAST:event_cantonCBMouseClicked
+
+    private void cantonCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cantonCBItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            List<Distrito> distrito = controller.consultarDistrito(provincia.getText(),cantonCB.getSelectedItem().toString());
+            String nombreDistrito[] = new String[distrito.size()];
+            for(int i = 0; i < nombreDistrito.length; i++)
+            {
+                nombreDistrito[i] = distrito.get(i).getNombre();
+            }
+            distritoCB.setModel(new javax.swing.DefaultComboBoxModel(nombreDistrito));
+            distritoCB.setSelectedItem(distritoCB.getSelectedItem());
+        }
+    }//GEN-LAST:event_cantonCBItemStateChanged
 
     /**
      * @param args the command line arguments

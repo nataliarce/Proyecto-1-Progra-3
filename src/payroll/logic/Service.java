@@ -71,7 +71,7 @@ public class Service {
 //        coordenadas.add(new Rectangle(10,404,428,324)); //Normal2
     }
      
-    //****************Cliente***********************************
+    //*****************************Cliente**************************************
     public Cliente buscarClientePorCedula(String cedula) throws Exception
     {
         Cliente result = data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
@@ -106,7 +106,7 @@ public class Service {
         else throw new Exception("Cliente ya existe en el sistema"); 
     }
     
-    //*******************Provincia*************************************
+    //***************************Provincia**************************************
         public Provincia buscar(int x, int y) throws Exception
     {
         
@@ -122,7 +122,7 @@ public class Service {
       throw new Exception("Provincia no existe");
     }  
     
-     //*********************Canton***********************************
+    //*******************************Canton*************************************
     public List<Canton> buscarCanton(String nombreProvincia) throws Exception
     {
         List<Canton> resultado = null;
@@ -137,16 +137,21 @@ public class Service {
         throw new Exception("Canton no existe");
     }
         
-    public List<Distrito> buscarDistrito(String nombreCanton) throws Exception
+    //*******************************Distrito***********************************
+    public List<Distrito> buscarDistrito(String nombreProvincia,String nombreCanton) throws Exception
     {
         List<Distrito> resultado = null;
-        for(Canton c: this.data.getCantones())
+        List<Canton> cantones = buscarCanton(nombreProvincia);
+        
+        for (int i = 0; i<cantones.size(); i++)
         {
-            if (!" ".equals(nombreCanton) && c.getNombre().equals(nombreCanton))
-             {
-                  resultado = c.getArrayDistrito();
-                  return resultado;
-             }
+            if (!"".equals(nombreCanton) && cantones.get(i).getNombre().equals(nombreCanton))
+            {
+                resultado = cantones.get(i).getArrayDistrito();
+                return resultado;
+            }
+ 
+
         }
         throw new Exception("Distrito no existe");
     }
