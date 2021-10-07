@@ -6,6 +6,8 @@
 package payroll.logic;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,18 +24,20 @@ public class Canton
     private String numero;
     private String nombre;
     @XmlIDREF
-    private ArrayList<Distrito> arrayDistrito;
+    private List<Distrito> arrayDistrito;
 
-    public Canton(String numero, String nombre) 
+    public Canton(String numero, String nombre, List<Distrito> distritos) 
     {
        this.numero = numero;
        this.nombre = nombre;
+       this.arrayDistrito = distritos;
     }
 
     public Canton()
     {
         this.numero = "";
         this.nombre = "";
+        this.arrayDistrito = new ArrayList<>();
     }
     
     public String getNumero() {
@@ -51,11 +55,11 @@ public class Canton
         this.nombre = nombre;
     }
 
-    public ArrayList<Distrito> getArrayDistrito() {
+    public List<Distrito> getArrayDistrito() {
         return arrayDistrito;
     }
 
-    public void setArrayDistrito(ArrayList<Distrito> arrayDistrito) {
+    public void setArrayDistrito(List<Distrito> arrayDistrito) {
         this.arrayDistrito = arrayDistrito;
     }
 
@@ -63,5 +67,32 @@ public class Canton
     public String toString() {
         return  nombre;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Canton other = (Canton) obj;
+        if (!Objects.equals(this.arrayDistrito, other.arrayDistrito)) {
+            return false;
+        }
+        return true;
+    }
+
+ 
+    
     
 }

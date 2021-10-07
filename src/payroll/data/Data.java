@@ -31,8 +31,8 @@ public class Data {
 
     public Data() {
         clientes = new ArrayList<>();
-        cantones = new ArrayList<>();
         provincias = new ArrayList<>();
+        cantones = new ArrayList<>();
         distritos = new ArrayList<>();
         
     }
