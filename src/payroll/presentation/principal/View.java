@@ -303,7 +303,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             
             cantonCB.setModel(new javax.swing.DefaultComboBoxModel(nombreCanton));
             cantonCB.setSelectedItem(cantonCB.getSelectedItem());
-           // cantonCB.setSelectedIndex(-1);
+            cantonCB.setSelectedIndex(-1);
 
         }
         else 
