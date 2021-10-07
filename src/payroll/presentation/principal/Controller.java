@@ -7,6 +7,8 @@ package payroll.presentation.principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import payroll.Application;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
@@ -68,6 +70,20 @@ public class Controller  {
             model.commit();
         }
         return null;    
+    }
+    
+    //****************************Provincia***************************************
+    
+    public Provincia buscarProvinciaPorNombre(String nombreProvincia)
+    {
+        try {
+            Provincia result =
+                    Service.instance().buscarProvinciaPorNombre(nombreProvincia);
+            return result;
+        } catch (Exception ex) {
+            
+        }
+        return null;
     }
     
     //****************************Canton***************************************

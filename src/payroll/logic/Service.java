@@ -107,7 +107,7 @@ public class Service {
     }
     
     //***************************Provincia**************************************
-        public Provincia buscar(int x, int y) throws Exception
+    public Provincia buscar(int x, int y) throws Exception
     {
         
       Provincia resultado = null;
@@ -121,6 +121,18 @@ public class Service {
       }
       throw new Exception("Provincia no existe");
     }  
+        
+    public Provincia buscarProvinciaPorNombre(String nombreProvincia) throws Exception
+    {
+        for(Provincia p: this.data.getProvincia())
+        {
+            if(p.getNombre().equals(nombreProvincia))
+            {
+                return p;
+            }
+        }
+        throw new Exception("Provincia no encontrada");
+    }
     
     //*******************************Canton*************************************
     public List<Canton> buscarCanton(String nombreProvincia) throws Exception

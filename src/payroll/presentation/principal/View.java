@@ -316,15 +316,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     //***********************EVENTO DE GUARDAR**********************************
     private void GuardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBtnActionPerformed
-//        if (cedula.getText().isEmpty() || nombre.getText().isEmpty())
-//        {
-//            JOptionPane.showMessageDialog(this,"Se deben rellenar todos los espacios para agregar un cliente" );
-//        }
-//        else 
-//        {
-////             controller.agregarCliente(new Cliente(cedula.getText(),nombre.getText(),(Provincia)provincia.getText(), 
-////                     (Canton) cantonCB.getSelectedItem(), (Distrito) distritoCB.getSelectedItem()));
-//        }
+        if (cedula.getText().isEmpty() || nombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this,
+                    "Se deben rellenar todos los espacios para agregar un cliente" );
+        }
+        else 
+        {
+            Provincia p = controller.buscarProvinciaPorNombre(provincia.getText());
+            controller.agregarCliente(new Cliente(cedula.getText(),nombre.getText(),
+                    p,(Canton) cantonCB.getSelectedItem(), (Distrito) distritoCB.getSelectedItem()));
+        }
     }//GEN-LAST:event_GuardarBtnActionPerformed
 
     //******************MOSTRAR PANTALLA PRESTAMO*******************************
