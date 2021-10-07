@@ -20,33 +20,38 @@ import javax.xml.bind.annotation.XmlAccessorType;
  *         Michelle Delgado Meneses
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Cliente {
     
-   // @XmlID
+   @XmlID
     private String cedula;
     private String nombre;
-   // @XmlIDREF
-    private Provincia provincia;
-    private Canton canton;
-    private Distrito distrito;
+   @XmlIDREF
+    private Provincia provincias;
+   @XmlIDREF
+    private Canton cantones;
+   @XmlIDREF
+    private Distrito distritos;
     private ArrayList<Prestamo> prestamos; 
 
     public Cliente(String cedula, String nombre, Provincia provincia, 
             Canton canton, Distrito distrito) {
         this.cedula = cedula;
         this.nombre = nombre;
-        this.provincia = provincia;
-        this.canton = canton;
-        this.distrito = distrito;
+        this.provincias = provincia;
+        this.cantones = canton;
+        this.distritos = distrito;
     }
 
     public Cliente() {
         this.cedula = "";
         this.nombre = "";
-        this.provincia = new Provincia();
-        this.canton = new Canton();
-        this.distrito = new Distrito();        
+        this.provincias = new Provincia();
+        this.cantones = new Canton();
+        this.distritos = new Distrito();        
     }
+
+
     
 
     public String getCedula() {
@@ -66,27 +71,27 @@ public class Cliente {
     }
 
     public Provincia getProvincia() {
-        return provincia;
+        return provincias;
     }
 
     public void setProvincia(Provincia provincia) {
-        this.provincia = provincia;
+        this.provincias = provincia;
     }
 
     public Canton getCanton() {
-        return canton;
+        return cantones;
     }
 
     public void setCanton(Canton canton) {
-        this.canton = canton;
+        this.cantones = canton;
     }
 
     public Distrito getDistrito() {
-        return distrito;
+        return distritos;
     }
 
     public void setDistrito(Distrito distrito) {
-        this.distrito = distrito;
+        this.distritos = distrito;
     }
 
     public ArrayList<Prestamo> getPrestamos() {
@@ -119,7 +124,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" + "cedula=" + cedula + ", nombre=" + nombre + ", canton=" 
-                + canton + ", distrito=" + distrito + '}';
+                + cantones + ", distrito=" + distritos + '}';
     }
 
     @Override

@@ -145,7 +145,8 @@ public class Controller  {
     {
         try {
             Service.instance().agregarCliente(cliente);
-            model.setCliente(new Cliente("","",new Provincia(), new Canton(), new Distrito()));
+            model.setCliente(new Cliente("","", new Provincia(),new Canton(),new Distrito()));
+            model.setClientes(Arrays.asList(cliente));
             model.commit();
         } catch (Exception e) {  
         

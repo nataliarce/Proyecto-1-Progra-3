@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Observable;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
@@ -62,6 +63,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
          Cliente cliente = model.getCliente();
          cedula.setText(cliente.getCedula());
          nombre.setText(cliente.getNombre());    
+         //provincia.setText(cliente.getProvincia().getNombre());
+         cantonCB.setSelectedItem(cliente.getCanton());
+         distritoCB.setSelectedItem(cliente.getDistrito());
+
          if(cliente.getCedula().isEmpty())
          {
             provinciasMapa.setIcon(pro[0]);
@@ -337,6 +342,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void cantonCBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cantonCBMouseClicked
         // TODO add your handling code here:
+        
+ 
  
 
 
