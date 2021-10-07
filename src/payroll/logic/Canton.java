@@ -24,20 +24,20 @@ public class Canton
     private String numero;
     private String nombre;
     @XmlIDREF
-    private List<Distrito> arrayDistrito;
+    private List<Distrito> distritos;
 
     public Canton(String numero, String nombre, List<Distrito> distritos) 
     {
        this.numero = numero;
        this.nombre = nombre;
-       this.arrayDistrito = distritos;
+       this.distritos = distritos;
     }
 
     public Canton()
     {
         this.numero = "";
         this.nombre = "";
-        this.arrayDistrito = new ArrayList<>();
+        this.distritos = new ArrayList<>();
     }
     
     public String getNumero() {
@@ -55,13 +55,14 @@ public class Canton
         this.nombre = nombre;
     }
 
-    public List<Distrito> getArrayDistrito() {
-        return arrayDistrito;
+    public List<Distrito> getDistritos() {
+        return distritos;
     }
 
-    public void setArrayDistrito(List<Distrito> arrayDistrito) {
-        this.arrayDistrito = arrayDistrito;
+    public void setDistritos(List<Distrito> distritos) {
+        this.distritos = distritos;
     }
+
 
     @Override
     public String toString() {
@@ -86,11 +87,12 @@ public class Canton
             return false;
         }
         final Canton other = (Canton) obj;
-        if (!Objects.equals(this.arrayDistrito, other.arrayDistrito)) {
+        if (!Objects.equals(this.distritos, other.distritos)) {
             return false;
         }
         return true;
     }
+
 
  
     

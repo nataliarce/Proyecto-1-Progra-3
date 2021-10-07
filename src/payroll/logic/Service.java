@@ -143,13 +143,19 @@ public class Service {
         List<Distrito> resultado = null;
         List<Canton> cantones = buscarCanton(nombreProvincia);
                
-        
+//        for (Canton c: cantones)
+//        {
+//            if (!"".equals(nombreCanton) && c.getNombre().equals(nombreCanton))
+//            {
+//                resultado = c.getArrayDistrito();
+//                return resultado;
+//            }
+//        }
         for (int i = 0; i<cantones.size(); i++)
         {
             if (!"".equals(nombreCanton) && cantones.get(i).getNombre().equals(nombreCanton))
             {
-                resultado = cantones.get(i).getArrayDistrito()   
-                        ;
+                resultado = cantones.get(i).getDistritos();
                 return resultado;
             }
  

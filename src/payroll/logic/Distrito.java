@@ -5,15 +5,17 @@
  */
 package payroll.logic;
 
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
-@XmlAccessorType(XmlAccessType.FIELD)
+
 
 /**
  *
  * @author Michelle
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Distrito 
 {
     @XmlID
@@ -42,5 +44,8 @@ public class Distrito
     {
         return  nombre;
     }
+
+
+    
 
 }
