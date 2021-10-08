@@ -31,6 +31,7 @@ public class Controller  {
     }
     
     public void show(){
+        
         this.view.setVisible(true);
     }
     

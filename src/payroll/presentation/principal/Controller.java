@@ -64,14 +64,14 @@ public class Controller  {
         {
         Provincia result = Service.instance().buscar(x,y);
         model.setProvincia(result);
-        model.commit();
+        //model.commit();
         return result;
         }
         
         catch (Exception e)
         {
             model.setProvincia(new Provincia());
-            model.commit();
+            //model.commit();
         }
         return null;    
     }
@@ -96,14 +96,14 @@ public class Controller  {
         {
             List<Canton> result= Service.instance().buscarCanton(text);
             model.setCanton(result);
-            model.commit();
+            //model.commit();
             return result;
         }
         
         catch (Exception e)
         {
             model.setCanton(new ArrayList<>());
-            model.commit();
+            //model.commit();
         }
         return null;
     }
@@ -127,14 +127,14 @@ public class Controller  {
         {
             List<Distrito> result = Service.instance().buscarDistrito(nombreProvincia,nombreCanton);
             model.setDistritos(result);
-            model.commit();
+            //model.commit();
             return result;
         }
         
         catch (Exception e)
         {
             model.setDistritos(new ArrayList<>());
-            model.commit();
+            //model.commit();
         }
         return null;
     }
