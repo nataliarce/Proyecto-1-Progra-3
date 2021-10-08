@@ -18,12 +18,12 @@ import payroll.logic.Pago;
  *
  * @author Michelle
  */
-public class PrestamosTableModel extends AbstractTableModel implements TableModel        
+public class PagosTableModel extends AbstractTableModel implements TableModel        
 {
-    String [] cols =  {"Monto","Plazo","Tasa Interes", "Cuotas"};
-    List<Prestamo> rows;
+    String [] cols =  {"Hora","#","Monto Pagado","Interes", "Amortizacion"};
+    List<Pago> rows;
     
-    public PrestamosTableModel(List<Prestamo> rows)
+    public PagosTableModel(List<Pago> rows)
     {
         this.rows = rows;
     }
@@ -48,18 +48,20 @@ public class PrestamosTableModel extends AbstractTableModel implements TableMode
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Prestamo p = rows.get(rowIndex);
+        Pago p = rows.get(rowIndex);
         int i = 0;
         switch(columnIndex)
         {
             case 0:
-                return p.getMonto();
+                return p.getFecha();
             case 1:
-                return p.getPlazo();
+                return p.getNumeroCuota();
             case 2:
-                return p.getTasaInteres();
+                return p.getMontoPagado();
             case 3:
-                return p.calcularCuota();
+                return p.getInteres();
+            case 4:
+                return p.getAmortizacion();
             default:
                 return "";
         }
@@ -68,4 +70,3 @@ public class PrestamosTableModel extends AbstractTableModel implements TableMode
 
     
 }
-

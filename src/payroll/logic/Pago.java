@@ -75,8 +75,8 @@ public class Pago {
 
     @Override
     public String toString() {
-        return "Pago{" + "fecha=" + fecha + ", numeroCuota=" + numeroCuota + ", montoPagado=" + 
-                montoPagado + ", interes=" + interes + ", amortizacion=" + amortizacion + '}';
+        return "Fecha" + fecha + "#" + numeroCuota + "Monto Pagado" + 
+                montoPagado + "Interes" + interes + "Amortizacion" + amortizacion;
     }
     
     

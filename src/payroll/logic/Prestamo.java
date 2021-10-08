@@ -12,6 +12,7 @@ préstamo. En dicho caso deberá recalcularse la cuota, considerando el saldo re
 la nueva cuota mensual será menor que antes
 */
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 /**
@@ -28,15 +29,24 @@ public class Prestamo
     private double plazo;
     private double tasaInteres;
    // @XmlIDREF
-    ArrayList<Pago> pagos;
+    List<Pago> pagos;
     
     public Prestamo(double m, double p, double t)
     {
         this.monto = m;
         this.plazo = p;
-        this.tasaInteres = t;  
+        this.tasaInteres = t; 
+        this.pagos = new ArrayList<>();
     }
 
+    public Prestamo(double monto, double plazo, double tasaInteres, List<Pago> pagos) {
+        this.monto = monto;
+        this.plazo = plazo;
+        this.tasaInteres = tasaInteres;
+        this.pagos = pagos;
+    }
+
+    
     public double getMonto()
     {
         return monto;
@@ -80,8 +90,8 @@ public class Prestamo
     @Override
     public String toString()
     {
-        return "Cuota: " + (int)getMonto() + "     Plazo: " + (int)getPlazo() + "      Interes: " + 
-                (int)getTasaInteres() + "      Cuota: " + (int)calcularCuota();
+        return "Monto" + (int)getMonto() + "Plazo: " + (int)getPlazo() + "Tasa Interes" + 
+                (int)getTasaInteres() + "Cuota" + (int)calcularCuota();
     }
     
     public void anadirPago(String fecha, float monto)

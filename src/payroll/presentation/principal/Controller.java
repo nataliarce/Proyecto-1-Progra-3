@@ -76,8 +76,6 @@ public class Controller  {
         return null;    
     }
     
-    //****************************Provincia***************************************
-    
     public Provincia buscarProvinciaPorNombre(String nombreProvincia)
     {
         try {

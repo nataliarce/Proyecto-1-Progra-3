@@ -57,16 +57,22 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
          {
              provinciasMapa.setIcon(pro[0]);
          }
-         
-         List<Canton> canton = model.getCantones();
-         List<Distrito> distritos = model.getDistritos();
+        
          Cliente cliente = model.getCliente();
          cedula.setText(cliente.getCedula());
          nombre.setText(cliente.getNombre());    
          //provincia.setText(cliente.getProvincia().getNombre());
-         cantonCB.setSelectedItem(cliente.getCanton());
-         distritoCB.setSelectedItem(cliente.getDistrito());
+         //cantonCB.setSelectedItem(cliente.getCanton());
+         //distritoCB.setSelectedItem(cliente.getDistrito());
 
+//         if (cliente.getProvincia().getNombre() != "")
+//         {
+//             provincia.setText(cliente.getProvincia().getNombre());
+//         }
+//         else 
+//         {
+//            cantonCB.setModel(new DefaultComboBox);
+//         }
          if(cliente.getCedula().isEmpty())
          {
             provinciasMapa.setIcon(pro[0]);
@@ -345,16 +351,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     //******************MOSTRAR PANTALLA PRESTAMO*******************************
     private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
         // TODO add your handling code here:
-        controller.mostrarPrestamos();
+        if (cedula.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Se debe de tener a cliente seleccionado");
+        }
+        else 
+        {
+            controller.mostrarPrestamos();
+        }
     }//GEN-LAST:event_prestamosActionPerformed
 
+    //************************EVENTO CANTON*************************************
     private void cantonCBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cantonCBMouseClicked
         // TODO add your handling code here:
-        
- 
- 
-
-
     }//GEN-LAST:event_cantonCBMouseClicked
 
     private void cantonCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cantonCBItemStateChanged
