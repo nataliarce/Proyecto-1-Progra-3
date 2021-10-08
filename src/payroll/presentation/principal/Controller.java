@@ -105,6 +105,18 @@ public class Controller  {
         }
         return null;
     }
+    
+    public Canton buscarCantonPorNombre(String nombreCanton)
+    {
+        Canton canton;
+        try {
+            canton = Service.instance().buscarCantonPorNombre(nombreCanton);
+            return canton;
+        } catch (Exception ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
         
     //***************************Distrito***************************************
     public List<Distrito> consultarDistrito(String nombreProvincia, String nombreCanton)
@@ -121,6 +133,18 @@ public class Controller  {
         {
             model.setDistritos(new ArrayList<>());
             model.commit();
+        }
+        return null;
+    }
+    
+    public Distrito buscarDistritoPorNombre(String nombreDistrito)
+    {
+        Distrito distrito;
+        try {
+            distrito = Service.instance().buscarDistritoPorNombre(nombreDistrito);
+            return distrito;
+        } catch (Exception ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

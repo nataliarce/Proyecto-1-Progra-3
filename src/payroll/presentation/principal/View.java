@@ -329,9 +329,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         else 
         {
             Provincia p = controller.buscarProvinciaPorNombre(provincia.getText());
+            Canton c = controller.buscarCantonPorNombre((String) cantonCB.getSelectedItem());
+            Distrito d = controller.buscarDistritoPorNombre((String) distritoCB.getSelectedItem());
             controller.agregarCliente(new Cliente(cedula.getText(),nombre.getText(),
-                    p,(Canton) cantonCB.getSelectedItem(), (Distrito) distritoCB.getSelectedItem()));
+                    p, c, d));
         }
+		
     }//GEN-LAST:event_GuardarBtnActionPerformed
 
     //******************MOSTRAR PANTALLA PRESTAMO*******************************

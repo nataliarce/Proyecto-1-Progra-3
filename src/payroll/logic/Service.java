@@ -148,6 +148,20 @@ public class Service {
         }
         throw new Exception("Canton no existe");
     }
+    
+    public Canton buscarCantonPorNombre(String nombreCanton) throws Exception
+    {
+        Canton canton;
+        for(Canton c: this.data.getCantones())
+        {
+            if(c.getNombre().equals(nombreCanton))
+            {
+                return c;
+            }
+        }
+        throw new Exception("Canton no encontrado");
+    }
+        	
         
     //*******************************Distrito***********************************
     public List<Distrito> buscarDistrito(String nombreProvincia,String nombreCanton) throws Exception
@@ -174,6 +188,20 @@ public class Service {
 
         }
         throw new Exception("Distrito no existe");
+    }
+    
+    
+    public Distrito buscarDistritoPorNombre(String nombreDistrito) throws Exception
+    {
+        Distrito distrito;
+        for(Distrito d: this.data.getDistritos())
+        {
+            if(d.getNombre().equals(nombreDistrito))
+            {
+                return d;
+            }
+        }
+        throw new Exception("Distrito no encontrado");
     }
         
         //********************************************************
