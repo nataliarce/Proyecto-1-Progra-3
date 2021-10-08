@@ -114,6 +114,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         prestamos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         provinciasMapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/payroll/presentation/imagenes/mapa0.png"))); // NOI18N
         provinciasMapa.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -211,12 +216,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textFieldDistrito)
                                     .addComponent(distritoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(provinciasMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(prestamos)
-                        .addContainerGap())))
+                        .addComponent(prestamos)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,6 +371,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             distritoCB.setSelectedItem(distritoCB.getSelectedItem());
         }
     }//GEN-LAST:event_cantonCBItemStateChanged
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        controller.exit();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

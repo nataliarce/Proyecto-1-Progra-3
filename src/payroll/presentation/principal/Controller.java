@@ -53,6 +53,10 @@ public class Controller  {
         this.view.setVisible(false);
     }
     
+    public void exit(){
+        Service.instance().store();
+    }
+    
     //*************************Provincia***************************************
     public Provincia consultarCoordenadas(int x, int y)
     {   
@@ -172,6 +176,9 @@ public class Controller  {
             model.setCliente(new Cliente("","", new Provincia(),new Canton(),new Distrito()));
             model.setClientes(Arrays.asList(cliente));
             model.commit();
+            Service.instance().store();
+            
+            
         } catch (Exception e) {  
         
         }
