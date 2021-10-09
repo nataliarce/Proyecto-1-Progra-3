@@ -32,6 +32,7 @@ public class Cliente {
     private Canton cantones;
    @XmlIDREF
     private Distrito distritos;
+   @XmlIDREF
     private ArrayList<Prestamo> prestamos; 
 
     public Cliente(String cedula, String nombre, Provincia provincia, 
