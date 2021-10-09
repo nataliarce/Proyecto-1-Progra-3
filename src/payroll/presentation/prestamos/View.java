@@ -6,6 +6,8 @@
 package payroll.presentation.prestamos;
 
 import java.util.Observable;
+import javax.swing.JOptionPane;
+import payroll.logic.Prestamo;
 
 /**
  *
@@ -75,6 +77,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         jScrollPane1 = new javax.swing.JScrollPane();
         prestamosTbl = new javax.swing.JTable();
         guardarPrestamo = new javax.swing.JToggleButton();
+        idPrestamo = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         labelPago = new javax.swing.JLabel();
         pago = new javax.swing.JTextField();
@@ -119,6 +123,15 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         jScrollPane1.setViewportView(prestamosTbl);
 
         guardarPrestamo.setText("Guardar Prestamo");
+        guardarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarPrestamoActionPerformed(evt);
+            }
+        });
+
+        idPrestamo.setText("ID");
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,18 +144,24 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelTasa)
                             .addComponent(labelPlazo)
-                            .addComponent(labelMonto))
+                            .addComponent(labelMonto)
+                            .addComponent(idPrestamo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(plazo)
-                                    .addComponent(tasaInteres))
-                                .addGap(29, 29, 29))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(plazo)
+                                            .addComponent(tasaInteres))
+                                        .addGap(29, 29, 29))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
+                                .addComponent(guardarPrestamo))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
-                        .addComponent(guardarPrestamo))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -153,7 +172,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idPrestamo)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelMonto)
                             .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -233,7 +255,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         labelNombre.setText("Cliente");
@@ -290,7 +312,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(regresarBtn)
                 .addGap(11, 11, 11))
         );
@@ -306,6 +328,21 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void clienteFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteFldActionPerformed
         //esto no es necesario
     }//GEN-LAST:event_clienteFldActionPerformed
+
+    private void guardarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarPrestamoActionPerformed
+        // TODO add your handling code here:
+        if (idPrestamo.getText().isEmpty() || monto.getText().isEmpty() || plazo.getText().isEmpty() || tasaInteres.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Se deben rellenar todos los espacios para agregar un cliente");
+        }
+        else 
+        {
+            int numMonto = Integer.parseInt(monto.getText());
+            int numPlazo = Integer.parseInt(plazo.getText());
+            int numTasa = Integer.parseInt(tasaInteres.getText());
+            controller.agregarPrestamo(new Prestamo(idPrestamo.getText(),numMonto,numPlazo,numTasa));
+        }
+    }//GEN-LAST:event_guardarPrestamoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,10 +385,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField fecha;
     private javax.swing.JToggleButton guardarPrestamo;
     private javax.swing.JTextField idFld;
+    private javax.swing.JLabel idPrestamo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelMonto;
     private javax.swing.JLabel labelNombre;
