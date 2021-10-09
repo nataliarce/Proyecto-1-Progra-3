@@ -56,6 +56,7 @@ public class Prestamo
         this.monto = monto;
         this.plazo = plazo;
         this.tasaInteres = tasaInteres;
+        this.pagos = new ArrayList<>();
         
     }
 
