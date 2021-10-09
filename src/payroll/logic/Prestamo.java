@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 public class Prestamo 
 {
    @XmlID
-   private String id;
+    private String id;
     private double monto;
     private double plazo;
     private double tasaInteres;

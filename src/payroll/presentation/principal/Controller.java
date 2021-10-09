@@ -187,6 +187,8 @@ public class Controller  {
         }
     }
     
+  
+    
     //*************************Prestamos***************************************
     
     void mostrarPrestamos()

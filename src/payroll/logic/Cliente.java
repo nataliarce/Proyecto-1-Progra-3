@@ -6,6 +6,7 @@
 package payroll.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
@@ -33,7 +34,7 @@ public class Cliente {
    @XmlIDREF
     private Distrito distritos;
    @XmlIDREF
-    private ArrayList<Prestamo> prestamos; 
+    private List<Prestamo> prestamos; 
 
     public Cliente(String cedula, String nombre, Provincia provincia, 
             Canton canton, Distrito distrito) {
@@ -42,6 +43,7 @@ public class Cliente {
         this.provincias = provincia;
         this.cantones = canton;
         this.distritos = distrito;
+        this.prestamos = new ArrayList<>();
     }
 
     public Cliente() {
@@ -52,8 +54,6 @@ public class Cliente {
         this.distritos = new Distrito();        
     }
 
-
-    
 
     public String getCedula() {
         return cedula;
@@ -95,11 +95,11 @@ public class Cliente {
         this.distritos = distrito;
     }
 
-    public ArrayList<Prestamo> getPrestamos() {
+    public List<Prestamo> getPrestamos() {
         return prestamos;
     }
 
-    public void setPrestamos(ArrayList<Prestamo> prestamos) {
+    public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
     }
     

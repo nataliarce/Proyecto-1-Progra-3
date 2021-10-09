@@ -169,14 +169,7 @@ public class Service {
         List<Distrito> resultado = null;
         List<Canton> cantones = buscarCanton(nombreProvincia);
                
-//        for (Canton c: cantones)
-//        {
-//            if (!"".equals(nombreCanton) && c.getNombre().equals(nombreCanton))
-//            {
-//                resultado = c.getArrayDistrito();
-//                return resultado;
-//            }
-//        }
+
         for (int i = 0; i<cantones.size(); i++)
         {
             if (!"".equals(nombreCanton) && cantones.get(i).getNombre().equals(nombreCanton))
@@ -216,18 +209,59 @@ public class Service {
 //    
 //    
     //*****************************Prestamo*************************************
-    public void agregarPrestamo(Prestamo prestamo) throws Exception
+
+    public void agregarPrestamo(Prestamo prestamo,String cedula) throws Exception
     {
-        Prestamo p = 
-                data.getPrestamos().stream().filter(c->c.getId().equals(prestamo.getId())).findFirst().orElse(null);
-        if (p == null) data.getPrestamos().add(prestamo);
-        else throw new Exception("Prestamo ya existe en el sistema"); 
+        List<Cliente> cliente = Service.instance().clienteSearch(cedula);
+
+        
+        for (int i = 0;i<cliente.size();i++)
+        {
+            if (!"".equals(cedula) && cliente.get(i).getCedula().equals(cedula))
+            {
+                Prestamo p = data.getPrestamos().stream().filter(c->c.getId().equals(prestamo.getId())).findFirst().orElse(null);
+                if (p == null)
+                {
+                    data.getClientes().get(i).getPrestamos().add(prestamo);
+                   // data.getPrestamos().add(prestamo);
+                }
+                else 
+                {
+                     throw new Exception("Prestamo ya existe en el sistema");
+                }                 
+            }
+            
+        }
+//        for (Cliente client : cliente)
+//        {
+//            if (!"".equals(cedula) && client.getCedula().equals(cedula))
+//            {
+//                Prestamo p = data.getPrestamos().stream().filter(c->c.getId().equals(prestamo.getId())).findFirst().orElse(null);
+//                if (p == null)
+//                {
+//                    
+//                    data.getPrestamos().add(prestamo);
+//                }
+//                else 
+//                {
+//                     throw new Exception("Prestamo ya existe en el sistema");
+//                }
+//            }
+//        }
     }
         
     public List<Prestamo> todosLosPrestamos()
     {
         return data.getPrestamos();
     }
+    
+    public List<Prestamo> buscar(String id)
+    {
+        List<Prestamo> resultado = data.getPrestamos().stream().filter(p->p.getId().startsWith(id)).collect(Collectors.toList());
+        return resultado;
+    }
+
+
     //*****************************Pagos****************************************
     //*******////***************************************************************
     public void store()

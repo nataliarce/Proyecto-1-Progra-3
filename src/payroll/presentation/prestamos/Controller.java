@@ -6,6 +6,7 @@
 package payroll.presentation.prestamos;
 
 import java.util.ArrayList;
+import java.util.List;
 import payroll.Application;
 import payroll.logic.Cliente;
 import payroll.logic.Pago;
@@ -40,15 +41,24 @@ public class Controller  {
         
     }
     
-    public void agregarPrestamo(Prestamo prestamo)
+    public void agregarPrestamo(Prestamo prestamo, String ced)
     {
         try {
-            Service.instance().agregarPrestamo(prestamo);
+            Service.instance().agregarPrestamo(prestamo, ced);
             model.commit();
             Service.instance().store(); 
         } catch (Exception e) {  
         
         }
+    }
+    
+          public void buscarPrestamo(String id)
+    {
+        List<Prestamo> prestamo = Service.instance().buscar(id);
+        model.setPrestamo(new Prestamo(id,0,0,0));
+        model.setPrestamos(prestamo);
+        model.commit();
+        
     }
     
     public void show(){

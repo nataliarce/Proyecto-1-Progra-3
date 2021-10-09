@@ -79,6 +79,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         guardarPrestamo = new javax.swing.JToggleButton();
         idPrestamo = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        aux = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         labelPago = new javax.swing.JLabel();
         pago = new javax.swing.JTextField();
@@ -131,6 +132,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         idPrestamo.setText("ID");
 
+        aux.setText("jButton1");
+        aux.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,7 +164,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                                     .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
-                        .addComponent(guardarPrestamo))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(guardarPrestamo)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(aux)
+                                .addGap(37, 37, 37))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -177,7 +189,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelPlazo)
-                            .addComponent(plazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(plazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aux)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(guardarPrestamo)))
@@ -335,9 +348,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             int numMonto = Integer.parseInt(monto.getText());
             int numPlazo = Integer.parseInt(plazo.getText());
             int numTasa = Integer.parseInt(tasaInteres.getText());
-            controller.agregarPrestamo(new Prestamo(idPrestamo.getText(),numMonto,numPlazo,numTasa));
+            controller.agregarPrestamo(new Prestamo(idPrestamo.getText(),numMonto,numPlazo,numTasa),idFld.getText());
         }
     }//GEN-LAST:event_guardarPrestamoActionPerformed
+
+    private void auxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auxActionPerformed
+        // TODO add your handling code here:
+        controller.buscarPrestamo(idPrestamo.getText());
+    }//GEN-LAST:event_auxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,6 +394,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aux;
     private javax.swing.JTextField clienteFld;
     private javax.swing.JTextField fecha;
     private javax.swing.JToggleButton guardarPrestamo;
