@@ -13,6 +13,8 @@ la nueva cuota mensual será menor que antes
 */
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 /**
@@ -22,14 +24,15 @@ import javax.xml.bind.annotation.XmlIDREF;
  *         Michelle Delgado Meneses
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo 
 {
-   //@XmlID
+   @XmlID
+   private String id;
     private double monto;
-    private String id;
     private double plazo;
     private double tasaInteres;
-   // @XmlIDREF
+   //@XmlIDREF
     List<Pago> pagos;
     
     public Prestamo()
