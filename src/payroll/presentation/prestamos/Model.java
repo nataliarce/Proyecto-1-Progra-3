@@ -70,7 +70,7 @@ public class Model extends Observable
  
     
     
-        @Override
+    @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); 
         this.commit();

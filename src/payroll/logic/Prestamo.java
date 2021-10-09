@@ -26,24 +26,43 @@ public class Prestamo
 {
    // @XmlID
     private double monto;
+    private String id;
     private double plazo;
     private double tasaInteres;
    // @XmlIDREF
     List<Pago> pagos;
     
-    public Prestamo(double m, double p, double t)
+    public Prestamo()
     {
-        this.monto = m;
-        this.plazo = p;
-        this.tasaInteres = t; 
+        this.monto = 0;
+        this.plazo = 0;
+        this.tasaInteres = 0; 
+        this.id = "";
         this.pagos = new ArrayList<>();
     }
 
-    public Prestamo(double monto, double plazo, double tasaInteres, List<Pago> pagos) {
+    public Prestamo(double monto, double plazo, double tasaInteres, String id, List<Pago> pagos) {
         this.monto = monto;
         this.plazo = plazo;
         this.tasaInteres = tasaInteres;
         this.pagos = pagos;
+        this.id = id;
+    }
+    
+    
+    public Prestamo(double monto, double plazo, double tasaInteres, String id) {
+        this.monto = monto;
+        this.plazo = plazo;
+        this.tasaInteres = tasaInteres;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     

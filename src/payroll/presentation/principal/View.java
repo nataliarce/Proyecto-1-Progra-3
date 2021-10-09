@@ -353,7 +353,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         // TODO add your handling code here:
         if (cedula.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(this, "Se debe de tener a cliente seleccionado");
+            JOptionPane.showMessageDialog(this, "Debe consultar un cliente primero.");
         }
         else 
         {

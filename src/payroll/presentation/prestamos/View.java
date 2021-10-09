@@ -40,6 +40,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     @Override
     public void update(Observable o, Object arg) 
     {
+        clienteFld.setText(model.getCliente().getNombre());
+        idFld.setText(model.getCliente().getCedula());
+        //prestamosTbl.setModel(new PrestamosTableModel(model.getPrestamos()));
 
     }
     
@@ -69,7 +72,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         plazo = new javax.swing.JTextField();
         tasaInteres = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        prestamosTbl = new javax.swing.JTable();
         guardarPrestamo = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         labelPago = new javax.swing.JLabel();
@@ -81,8 +84,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         fecha = new javax.swing.JTextField();
         labelNombre = new javax.swing.JLabel();
         labelid = new javax.swing.JLabel();
-        cliente = new javax.swing.JTextField();
-        id = new javax.swing.JTextField();
+        clienteFld = new javax.swing.JTextField();
+        idFld = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -101,7 +104,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         labelTasa.setText("Tasa Interes");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        prestamosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,7 +115,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(prestamosTbl);
 
         guardarPrestamo.setText("Guardar Prestamo");
 
@@ -201,7 +204,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                     .addComponent(labelFecha))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pago, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(pago)
                     .addComponent(fecha))
                 .addGap(102, 102, 102)
                 .addComponent(pagoCuota)
@@ -236,9 +239,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         labelid.setText("ID");
 
-        cliente.setEditable(false);
+        clienteFld.setEditable(false);
+        clienteFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clienteFldActionPerformed(evt);
+            }
+        });
 
-        id.setEditable(false);
+        idFld.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,8 +259,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                     .addComponent(labelNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cliente)
-                    .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+                    .addComponent(clienteFld)
+                    .addComponent(idFld, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -272,11 +280,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNombre)
-                    .addComponent(cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(clienteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelid)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -293,6 +301,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         // TODO add your handling code here:
         controller.hide();
     }//GEN-LAST:event_regresarBtnActionPerformed
+
+    private void clienteFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteFldActionPerformed
+        //esto no es necesario
+    }//GEN-LAST:event_clienteFldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,15 +343,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cliente;
+    private javax.swing.JTextField clienteFld;
     private javax.swing.JTextField fecha;
     private javax.swing.JToggleButton guardarPrestamo;
-    private javax.swing.JTextField id;
+    private javax.swing.JTextField idFld;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelMonto;
@@ -352,6 +363,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField pago;
     private javax.swing.JToggleButton pagoCuota;
     private javax.swing.JTextField plazo;
+    private javax.swing.JTable prestamosTbl;
     private javax.swing.JButton regresarBtn;
     private javax.swing.JTextField tasaInteres;
     // End of variables declaration//GEN-END:variables

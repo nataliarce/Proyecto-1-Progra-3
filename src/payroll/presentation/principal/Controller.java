@@ -57,6 +57,11 @@ public class Controller  {
         Service.instance().store();
     }
     
+    public Cliente getCliente()
+    {
+        return model.getCliente();
+    }
+    
     //*************************Provincia***************************************
     public Provincia consultarCoordenadas(int x, int y)
     {   

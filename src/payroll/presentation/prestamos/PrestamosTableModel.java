@@ -20,7 +20,7 @@ import payroll.logic.Pago;
  */
 public class PrestamosTableModel extends AbstractTableModel implements TableModel        
 {
-    String [] cols =  {"Monto","Plazo","Tasa Interes", "Cuotas"};
+    String [] cols =  {"Monto","Plazo","Tasa Interes", "Cuota"};
     List<Prestamo> rows;
     
     public PrestamosTableModel(List<Prestamo> rows)

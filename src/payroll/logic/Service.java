@@ -203,6 +203,24 @@ public class Service {
         }
         throw new Exception("Distrito no encontrado");
     }
+    //********************************************************
+//    
+//    
+//    
+//    
+//                          SEGUNDA PANTALLA
+//    
+//    
+//    
+//    
+//    
+    public void agregarPrestamo(Prestamo prestamo) throws Exception
+    {
+        Prestamo p = 
+                data.getPrestamos().stream().filter(c->c.getId().equals(prestamo.getId())).findFirst().orElse(null);
+        if (p == null) data.getPrestamos().add(prestamo);
+        else throw new Exception("Prestamo ya existe en el sistema"); 
+    }
         
         //********************************************************
         public void store()

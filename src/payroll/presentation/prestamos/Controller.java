@@ -6,6 +6,9 @@
 package payroll.presentation.prestamos;
 
 import payroll.Application;
+import payroll.logic.Cliente;
+import payroll.logic.Prestamo;
+import payroll.logic.Service;
 
 /**
  *
@@ -22,6 +25,7 @@ public class Controller  {
     {
         this.model = model;
         this.view = view;
+        this.model.setCliente(new Cliente());
         
         // invoke Model sets for initialization before linking to the view
         // problably get the data from Service
@@ -30,9 +34,22 @@ public class Controller  {
         
     }
     
+    public void agregarPrestamo(Prestamo prestamo)
+    {
+        try {
+            Service.instance().agregarPrestamo(prestamo);
+            model.commit();
+            Service.instance().store(); 
+        } catch (Exception e) {  
+        
+        }
+    }
+    
     public void show(){
         
+        model.setCliente(Application.PRINCIPAL.getCliente());
         this.view.setVisible(true);
+        model.commit();
     }
     
     public void hide(){
