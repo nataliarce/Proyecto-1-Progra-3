@@ -5,8 +5,10 @@
  */
 package payroll.presentation.prestamos;
 
+import java.util.ArrayList;
 import payroll.Application;
 import payroll.logic.Cliente;
+import payroll.logic.Pago;
 import payroll.logic.Prestamo;
 import payroll.logic.Service;
 
@@ -25,6 +27,10 @@ public class Controller  {
     {
         this.model = model;
         this.view = view;
+        this.model.setPrestamo(new Prestamo());
+        this.model.setPrestamos(new ArrayList<>());
+        this.model.setPago(new Pago());
+        this.model.setPagos(new ArrayList<>());
         this.model.setCliente(new Cliente());
         
         // invoke Model sets for initialization before linking to the view

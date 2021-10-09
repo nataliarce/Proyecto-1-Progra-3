@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
 import payroll.logic.Distrito;
+import payroll.logic.Pago;
 import payroll.logic.Prestamo;
 import payroll.logic.Provincia;
 
@@ -24,7 +25,8 @@ import payroll.logic.Provincia;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
     private List<Cliente> clientes;    
-    private List<Prestamo> prestamos;     
+    private List<Prestamo> prestamos; 
+    private List<Pago> pagos;
     private List<Provincia> provincias;
     private List<Canton> cantones;
     private List<Distrito> distritos;
@@ -35,6 +37,7 @@ public class Data {
         cantones = new ArrayList<>();
         distritos = new ArrayList<>();
         prestamos = new ArrayList<>();
+        pagos = new ArrayList<>();
     }
 
     public List<Prestamo> getPrestamos() {
@@ -76,5 +79,14 @@ public class Data {
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
+
+    public List<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
+    }
+    
     
 }

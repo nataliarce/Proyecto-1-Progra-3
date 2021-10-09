@@ -42,7 +42,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     {
         clienteFld.setText(model.getCliente().getNombre());
         idFld.setText(model.getCliente().getCedula());
-        //prestamosTbl.setModel(new PrestamosTableModel(model.getPrestamos()));
+        prestamosTbl.setModel(new PrestamosTableModel(model.getPrestamos()));
+        pagosTbl.setModel(new PagosTableModel(model.getPagos()));
 
     }
     
@@ -78,7 +79,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         labelPago = new javax.swing.JLabel();
         pago = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        pagosTbl = new javax.swing.JTable();
         pagoCuota = new javax.swing.JToggleButton();
         labelFecha = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
@@ -176,7 +177,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         labelPago.setText("Monto a Pagar");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        pagosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -187,7 +188,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(pagosTbl);
 
         pagoCuota.setText("Pagar Cuota");
 
@@ -351,7 +352,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelMonto;
     private javax.swing.JLabel labelNombre;
@@ -362,6 +362,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField monto;
     private javax.swing.JTextField pago;
     private javax.swing.JToggleButton pagoCuota;
+    private javax.swing.JTable pagosTbl;
     private javax.swing.JTextField plazo;
     private javax.swing.JTable prestamosTbl;
     private javax.swing.JButton regresarBtn;

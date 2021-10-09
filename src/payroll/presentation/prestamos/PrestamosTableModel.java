@@ -5,14 +5,11 @@
  */
 package payroll.presentation.prestamos;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import payroll.logic.Prestamo;
-import java.util.Calendar;
-import payroll.logic.Pago;
+
 
 /**
  *

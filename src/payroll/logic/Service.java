@@ -224,6 +224,10 @@ public class Service {
         else throw new Exception("Prestamo ya existe en el sistema"); 
     }
         
+    public List<Prestamo> todosLosPrestamos()
+    {
+        return data.getPrestamos();
+    }
     //*****************************Pagos****************************************
     //*******////***************************************************************
     public void store()
