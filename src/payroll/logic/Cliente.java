@@ -104,7 +104,7 @@ public class Cliente {
     
     public void anadirPrestamo(String id, double monto, double plazo, double tasaInteres)
     {
-        Prestamo p = new Prestamo(monto, plazo, tasaInteres, id);
+        Prestamo p = new Prestamo(id,monto, plazo, tasaInteres);
         prestamos.add(p);
     }
     

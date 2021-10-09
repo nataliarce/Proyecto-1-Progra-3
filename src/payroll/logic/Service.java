@@ -203,7 +203,8 @@ public class Service {
         }
         throw new Exception("Distrito no encontrado");
     }
-    //********************************************************
+    //**************************************************************************
+    
 //    
 //    
 //    
@@ -214,6 +215,7 @@ public class Service {
 //    
 //    
 //    
+    //*****************************Prestamo*************************************
     public void agregarPrestamo(Prestamo prestamo) throws Exception
     {
         Prestamo p = 
@@ -222,8 +224,9 @@ public class Service {
         else throw new Exception("Prestamo ya existe en el sistema"); 
     }
         
-        //********************************************************
-        public void store()
+    //*****************************Pagos****************************************
+    //*******////***************************************************************
+    public void store()
     {
         try 
         {
@@ -236,6 +239,3 @@ public class Service {
     
         
 }
-
-
-

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlIDREF;
  */
 public class Prestamo 
 {
-   // @XmlID
+   //@XmlID
     private double monto;
     private String id;
     private double plazo;
@@ -34,27 +34,29 @@ public class Prestamo
     
     public Prestamo()
     {
+        this.id = "";
         this.monto = 0;
         this.plazo = 0;
-        this.tasaInteres = 0; 
-        this.id = "";
+        this.tasaInteres = 0;  
         this.pagos = new ArrayList<>();
     }
 
-    public Prestamo(double monto, double plazo, double tasaInteres, String id, List<Pago> pagos) {
+    public Prestamo(String id,double monto, double plazo, double tasaInteres, List<Pago> pagos) {
+        this.id = id;
         this.monto = monto;
         this.plazo = plazo;
         this.tasaInteres = tasaInteres;
         this.pagos = pagos;
-        this.id = id;
+        
     }
     
     
-    public Prestamo(double monto, double plazo, double tasaInteres, String id) {
+    public Prestamo( String id,double monto, double plazo, double tasaInteres) {
+        this.id = id;
         this.monto = monto;
         this.plazo = plazo;
         this.tasaInteres = tasaInteres;
-        this.id = id;
+        
     }
 
     public String getId() {
@@ -109,7 +111,7 @@ public class Prestamo
     @Override
     public String toString()
     {
-        return "Monto" + (int)getMonto() + "Plazo: " + (int)getPlazo() + "Tasa Interes" + 
+        return "Id" + getId() + "Monto" + (int)getMonto() + "Plazo: " + (int)getPlazo() + "Tasa Interes" + 
                 (int)getTasaInteres() + "Cuota" + (int)calcularCuota();
     }
     

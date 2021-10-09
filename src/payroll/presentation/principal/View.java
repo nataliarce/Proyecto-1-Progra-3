@@ -164,7 +164,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
-        provincia.setEnabled(false);
+        provincia.setEditable(false);
 
         ConsultarBtn.setText("Consultar");
         ConsultarBtn.addActionListener(new java.awt.event.ActionListener() {

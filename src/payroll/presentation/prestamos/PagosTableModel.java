@@ -16,7 +16,10 @@ import payroll.logic.Pago;
 
 /**
  *
- * @author Michelle
+ * Autores:
+ *         Natalia Arce Rodriguez
+ *         Michelle Delgado Meneses
+ * 
  */
 public class PagosTableModel extends AbstractTableModel implements TableModel        
 {
