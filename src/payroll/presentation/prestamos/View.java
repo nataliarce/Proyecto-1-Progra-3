@@ -378,6 +378,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         }
         else 
         {
+            
             int numPago = Integer.parseInt(pago.getText());
             controller.agregarPago(fecha.getText(),numPago, idFld.getText(), idBuscarPrestamo.getText());
             JOptionPane.showMessageDialog(this, "Se realizo el pago exitosamente");

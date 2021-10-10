@@ -15,7 +15,10 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 /**
  *
- * @author Michelle
+ * Autores:
+ *         Natalia Arce Rodriguez
+ *         Michelle Delgado Meneses
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Canton

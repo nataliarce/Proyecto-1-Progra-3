@@ -10,10 +10,12 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 
-
 /**
  *
- * @author Michelle
+ * Autores:
+ *         Natalia Arce Rodriguez
+ *         Michelle Delgado Meneses
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Distrito 

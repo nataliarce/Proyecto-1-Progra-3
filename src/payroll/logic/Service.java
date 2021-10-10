@@ -13,11 +13,12 @@ import java.util.stream.Collectors;
 import payroll.data.Data;
 import payroll.data.XmlPersister;
 
-
-//patron singleton 
 /**
  *
- * @author natalia, michelle
+ * Autores:
+ *         Natalia Arce Rodriguez
+ *         Michelle Delgado Meneses
+ * 
  */
 public class Service {
     
@@ -269,24 +270,6 @@ public class Service {
         {
             throw new Exception ("Ya se pago todo el monto");
         }
-        
-        //List<Prestamo> prestamo = Service.instance().PrestamoSearch(id);
-        
-//        for (int i = 0;i<prestamo.size();i++)
-//        {
-//            if (!"".equals(id) && prestamo.get(i).getId().equals(id))
-//            {
-//                if (prestamo.get(i).getMonto() != 0)
-//                {
-//                    data.getClientes().get(i).getPrestamos().get(i).anadirPago(fecha, monto);
-//                }
-//                else 
-//                {
-//                    throw new Exception ("Ya se pago todo el monto");
-//                }
-//            }
-//        }
-
     }
     //**************************************************************************
     public void store()

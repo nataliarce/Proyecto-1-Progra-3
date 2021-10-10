@@ -127,6 +127,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         });
 
         provinciasMapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/payroll/presentation/imagenes/mapa0.png"))); // NOI18N
+        provinciasMapa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         provinciasMapa.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 provinciasMapaMouseMoved(evt);

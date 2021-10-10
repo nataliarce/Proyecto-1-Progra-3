@@ -11,7 +11,10 @@ import javax.xml.bind.annotation.XmlID;
 
 /**
  *
- * @author natalia, michelle
+ * Autores:
+ *         Natalia Arce Rodriguez
+ *         Michelle Delgado Meneses
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Pago {
