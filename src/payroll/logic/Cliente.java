@@ -33,7 +33,6 @@ public class Cliente {
     private Canton cantones;
    @XmlIDREF
     private Distrito distritos;
-   @XmlIDREF
     private List<Prestamo> prestamos; 
 
     public Cliente(String cedula, String nombre, Provincia provincia, 
@@ -52,9 +51,18 @@ public class Cliente {
         this.provincias = new Provincia();
         this.cantones = new Canton();
         this.distritos = new Distrito();        
+        this.prestamos = new ArrayList();
     }
 
-
+    public Cliente(String cedula, String nombre, Provincia provincias, Canton cantones, Distrito distritos, List<Prestamo> prestamos) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.provincias = provincias;
+        this.cantones = cantones;
+        this.distritos = distritos;
+        this.prestamos = prestamos;
+    }
+    
     public String getCedula() {
         return cedula;
     }

@@ -6,6 +6,7 @@
 package payroll.presentation.prestamos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import payroll.Application;
 import payroll.logic.Cliente;
@@ -43,24 +44,47 @@ public class Controller  {
     
     public void agregarPrestamo(Prestamo prestamo, String ced)
     {
-        try {
+        try 
+        {
             Service.instance().agregarPrestamo(prestamo, ced);
+            model.setPrestamo(new Prestamo("",0,0,0,new ArrayList<>()));
+            model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
             Service.instance().store(); 
-        } catch (Exception e) {  
-        
+        } 
+        catch (Exception e) 
+        {  
         }
     }
     
-          public void buscarPrestamo(String id)
+          public void prestamoSearch(String cedulaCliente)
     {
-        List<Prestamo> prestamo = Service.instance().buscar(id);
-        model.setPrestamo(new Prestamo(id,0,0,0));
+        try
+        {
+        List<Prestamo> prestamo = Service.instance().PrestamoSearch(cedulaCliente);
+        model.setPrestamo(new Prestamo(cedulaCliente,0,0,0));
         model.setPrestamos(prestamo);
         model.commit();
-        
+        }
+        catch (Exception e)
+        {
+        }
     }
     
+          public void agregarPago(String fecha, int monto, String cedula,String id)
+          {
+              try
+              {
+                  Service.instance().agregarPago(fecha, monto, cedula,id);
+                  model.setPago(new Pago("",0,0,0,0));
+                  model.commit();
+              }
+              catch (Exception e)
+              {
+                  
+              }
+              
+          }
     public void show(){
         
         model.setCliente(Application.PRINCIPAL.getCliente());

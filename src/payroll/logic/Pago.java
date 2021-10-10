@@ -5,12 +5,16 @@
  */
 package payroll.logic;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+
 /**
  *
  * @author natalia, michelle
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Pago {
-    
     private String fecha;
     private int numeroCuota;
     private float montoPagado;

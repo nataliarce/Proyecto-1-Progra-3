@@ -176,7 +176,7 @@ public class Controller  {
     {
         try {
             Service.instance().agregarCliente(cliente);
-            model.setCliente(new Cliente("","", new Provincia(),new Canton(),new Distrito()));
+            model.setCliente(new Cliente("","", new Provincia(),new Canton(),new Distrito(),new ArrayList<>()));
             model.setClientes(Arrays.asList(cliente));
             model.commit();
             Service.instance().store();

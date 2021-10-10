@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 /**
  *
@@ -27,13 +26,11 @@ import javax.xml.bind.annotation.XmlIDREF;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo 
 {
-   @XmlID
     private String id;
     private double monto;
     private double plazo;
     private double tasaInteres;
-   //@XmlIDREF
-    List<Pago> pagos;
+    private List<Pago> pagos;
     
     public Prestamo()
     {
@@ -109,14 +106,14 @@ public class Prestamo
         x = Math.pow((1+(tasaInteres/100)),-plazo);
         cuota= (monto*(tasaInteres/100)/(1-x));
         
-        return cuota;
+        return (int)cuota;
     }
     
     @Override
     public String toString()
     {
-        return "Id" + getId() + "Monto" + (int)getMonto() + "Plazo: " + (int)getPlazo() + "Tasa Interes" + 
-                (int)getTasaInteres() + "Cuota" + (int)calcularCuota();
+        return "Id" + getId() + "Monto" + (double)getMonto() + "Plazo: " + (double)getPlazo() + "Tasa Interes" + 
+                (double)getTasaInteres() + "Cuota" + (double)calcularCuota();
     }
     
     public void anadirPago(String fecha, float monto)

@@ -90,6 +90,7 @@ public class Service {
     }
       
     public List<Cliente> clienteSearch(String cedula){
+
         List<Cliente> result=data.getClientes().stream().filter(c->c.getCedula().startsWith(cedula)).collect(Collectors.toList());
        return result;        
     }
@@ -212,42 +213,10 @@ public class Service {
 
     public void agregarPrestamo(Prestamo prestamo,String cedula) throws Exception
     {
-        List<Cliente> cliente = Service.instance().clienteSearch(cedula);
-
         
-        for (int i = 0;i<cliente.size();i++)
-        {
-            if (!"".equals(cedula) && cliente.get(i).getCedula().equals(cedula))
-            {
-                Prestamo p = data.getPrestamos().stream().filter(c->c.getId().equals(prestamo.getId())).findFirst().orElse(null);
-                if (p == null)
-                {
-                    data.getClientes().get(i).getPrestamos().add(prestamo);
-                   // data.getPrestamos().add(prestamo);
-                }
-                else 
-                {
-                     throw new Exception("Prestamo ya existe en el sistema");
-                }                 
-            }
-            
-        }
-//        for (Cliente client : cliente)
-//        {
-//            if (!"".equals(cedula) && client.getCedula().equals(cedula))
-//            {
-//                Prestamo p = data.getPrestamos().stream().filter(c->c.getId().equals(prestamo.getId())).findFirst().orElse(null);
-//                if (p == null)
-//                {
-//                    
-//                    data.getPrestamos().add(prestamo);
-//                }
-//                else 
-//                {
-//                     throw new Exception("Prestamo ya existe en el sistema");
-//                }
-//            }
-//        }
+        Cliente cliente = clienteGet(cedula);
+        cliente.getPrestamos().add(prestamo);
+        
     }
         
     public List<Prestamo> todosLosPrestamos()
@@ -255,15 +224,71 @@ public class Service {
         return data.getPrestamos();
     }
     
-    public List<Prestamo> buscar(String id)
+    public List<Prestamo> PrestamoSearch(String cedula) throws Exception
     {
-        List<Prestamo> resultado = data.getPrestamos().stream().filter(p->p.getId().startsWith(id)).collect(Collectors.toList());
-        return resultado;
+
+        Cliente cliente = clienteGet(cedula);
+
+         List<Prestamo> resultado = cliente.getPrestamos();
+                 //data.getPrestamos().stream().filter(p->p.getId().startsWith(id)).collect(Collectors.toList());
+         return resultado;
+
     }
+    
+    public Prestamo PrestamoGet (String cedula, String id) throws Exception
+    {
+        Cliente cliente = clienteGet(cedula);
+        
+        Prestamo resultado = cliente.getPrestamos().stream().filter(p->p.getId().equals(id)).findFirst().orElse(null);
+        
+        if (resultado != null)
+        {
+            return resultado;
+        }
+        else 
+        {
+            throw new Exception ("Prestamo no encontrado");
+        }
+        
 
+    }
+    
 
+    
     //*****************************Pagos****************************************
-    //*******////***************************************************************
+
+    public void agregarPago (String fecha, int monto, String cedula, String id) throws Exception
+    {
+        
+        Prestamo prestamo = PrestamoGet(cedula,id);
+        if (prestamo.getMonto() != 0)
+        {
+            prestamo.anadirPago(fecha, monto);
+        }
+        else 
+        {
+            throw new Exception ("Ya se pago todo el monto");
+        }
+        
+        //List<Prestamo> prestamo = Service.instance().PrestamoSearch(id);
+        
+//        for (int i = 0;i<prestamo.size();i++)
+//        {
+//            if (!"".equals(id) && prestamo.get(i).getId().equals(id))
+//            {
+//                if (prestamo.get(i).getMonto() != 0)
+//                {
+//                    data.getClientes().get(i).getPrestamos().get(i).anadirPago(fecha, monto);
+//                }
+//                else 
+//                {
+//                    throw new Exception ("Ya se pago todo el monto");
+//                }
+//            }
+//        }
+
+    }
+    //**************************************************************************
     public void store()
     {
         try 
