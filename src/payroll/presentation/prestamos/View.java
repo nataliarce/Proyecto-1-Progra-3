@@ -536,7 +536,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void listarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarPagoActionPerformed
         // TODO add your handling code here:
-        controller.consultarPago(idFld.getText(), idPrestamo.getText(), fecha.getText());
+        controller.prestamoSearch(idFld.getText());
     }//GEN-LAST:event_listarPagoActionPerformed
 
     /**
