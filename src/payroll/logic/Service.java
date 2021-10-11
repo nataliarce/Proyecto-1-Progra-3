@@ -10,7 +10,6 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JOptionPane;
 import payroll.data.Data;
 import payroll.data.XmlPersister;
 
@@ -68,15 +67,6 @@ public class Service {
         coordenadas.add(new Rectangle(547,511,121,74));  //Puntarenas
         coordenadas.add(new Rectangle(588,329,72,106)); //Limon
 
-       
-//        coordenadas.add(new Rectangle(318,333,89,49)); //San Jose2
-//        coordenadas.add(new Rectangle(188,91,168,35)); //Alajuela2     
-//        coordenadas.add(new Rectangle(475,192,77,13)); //Limon2       
-//        coordenadas.add(new Rectangle(555,456,58,39)); //Puntarenas2
-//        coordenadas.add(new Rectangle(242,246,38,44)); //Puntarenas3
-//        coordenadas.add(new Rectangle(173,314,33,42)); //Puntarenas4
-//        coordenadas.add(new Rectangle(593,4,251,263)); //Normal
-//        coordenadas.add(new Rectangle(10,404,428,324)); //Normal2
     }
      
     //*****************************Cliente**************************************
@@ -243,10 +233,12 @@ public class Service {
         Cliente cliente = clienteGet(cedula);
 
          List<Prestamo> resultado = cliente.getPrestamos();
-                 //data.getPrestamos().stream().filter(p->p.getId().startsWith(id)).collect(Collectors.toList());
          return resultado;
 
     }
+
+    
+
     
     public Prestamo PrestamoGet (String cedula, String id) throws Exception
     {
@@ -297,6 +289,21 @@ public class Service {
         }
     }
     
+    public Pago pagoGet(String cedula, String id, String numero) throws Exception
+    {
+        
+        Prestamo prestamo = PrestamoGet(cedula, id);
+        Pago resultado = prestamo.getPagos().stream().filter(p->p.getFecha().equals(numero)).findFirst().orElse(null);
+        
+        if (resultado != null)
+        {
+            return resultado;
+        }
+        else 
+        {
+            throw new Exception ("Pagos no encontrado");
+        }
+    }
         //**************************************************************************
     
 //    

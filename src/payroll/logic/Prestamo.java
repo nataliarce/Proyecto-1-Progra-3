@@ -126,12 +126,6 @@ public class Prestamo
                 (double)getTasaInteres() + "Cuota" + (double)calcularCuota();
     }
     
-    public String pdftoString()
-    {
-        return "Id: " + getId() + "\n" + "Monto: " + (int)getMonto() +  "\n" + "Plazo: " + (int)getPlazo() + "\n" + "Tasa de Interes: " +
-                (int)getTasaInteres() + "\n" + "Cuota: " + (int)calcularCuota();
-                
-    }
     public void anadirPago(String fecha, float monto)
     {
         Pago p;

@@ -311,6 +311,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     //***********************EVENTO DE CLIENTE**********************************
     private void ConsultarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBtnActionPerformed
         controller.consultarClientePorCedula(cedula.getText());
+        Cliente cliente = model.getCliente();
+        
+        if (!cliente.equals(new Cliente()))
+        {
+            cantonCB.setModel(new DefaultComboBoxModel(controller.getCantones(cliente.getProvincia().getNombre()).toArray()));
+            cantonCB.setSelectedItem(cliente.getCanton());
+        }
+        else 
+        {
+            //cantonCB.setModel(new Default);
+        }
     }//GEN-LAST:event_ConsultarBtnActionPerformed
 
     //***********************EVENTO DE MAPA************************************

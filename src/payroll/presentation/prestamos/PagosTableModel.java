@@ -23,7 +23,7 @@ import payroll.logic.Pago;
  */
 public class PagosTableModel extends AbstractTableModel implements TableModel        
 {
-    String [] cols =  {"Hora","#","Monto Pagado","Interes", "Amortizacion"};
+    String [] cols =  {"Fecha","#","Monto Pagado","Interes", "Amortizacion"};
     List<Pago> rows;
     
     public PagosTableModel(List<Pago> rows)
@@ -52,7 +52,6 @@ public class PagosTableModel extends AbstractTableModel implements TableModel
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Pago p = rows.get(rowIndex);
-        int i = 0;
         switch(columnIndex)
         {
             case 0:

@@ -82,8 +82,8 @@ public class Pago {
 
     @Override
     public String toString() {
-        return "Fecha" + fecha + "#" + numeroCuota + "Monto Pagado" + 
-                montoPagado + "Interes" + interes + "Amortizacion" + amortizacion;
+        return "Fecha" + getFecha() + "#" + getNumeroCuota() + "Monto Pagado" + 
+                getMontoPagado() + "Interes" + getInteres() + "Amortizacion" + getAmortizacion();
     }
     
     

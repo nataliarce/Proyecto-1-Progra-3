@@ -62,6 +62,17 @@ public class Controller  {
         return model.getCliente();
     }
     
+    public List<Canton> getCantones(String nombre)
+    {
+        return model.getCantones();
+    }
+    
+    public List<Distrito> getDistrito()
+    {
+        return model.getDistritos();
+    }
+    
+    
     //*************************Provincia***************************************
     public Provincia consultarCoordenadas(int x, int y)
     {   

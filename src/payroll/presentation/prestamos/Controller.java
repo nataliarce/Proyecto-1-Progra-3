@@ -60,7 +60,7 @@ public class Controller  {
         }
     }
     
-          public void prestamoSearch(String cedulaCliente)
+    public void prestamoSearch(String cedulaCliente)
     {
         try
         {
@@ -74,21 +74,36 @@ public class Controller  {
         }
     }
     
-          public void agregarPago(String fecha, int monto, String cedula,String id)
-          {
-              try
-              {
-                  Service.instance().agregarPago(fecha, monto, cedula,id);
-                  model.setPago(new Pago("",0,0,0,0));
-                  model.commit();
-              }
-              catch (Exception e)
-              {
+    public void agregarPago(String fecha, int monto, String cedula,String id)
+    {
+        try
+        {
+            Service.instance().agregarPago(fecha, monto, cedula,id);
+            model.setPago(new Pago("",0,0,0,0));
+            model.commit();
+        }
+        catch (Exception e)
+        {
                   
-              }
+        }         
               
-          }
+      }         
 
+    public void consultarPago(String cedula, String idPrestamo, String fecha)
+    {
+        try
+        {
+            Pago pagos = Service.instance().pagoGet(cedula, idPrestamo,fecha);
+            model.setPago(pagos);
+            model.commit();
+            
+        }
+        catch (Exception e)
+        {
+            model.setPago(new Pago());
+            model.commit();
+        }
+    }
     public void consultarPrestamo(String cedula, String idPrestamo) 
     {
         try
