@@ -41,7 +41,10 @@ public class Controller  {
         view.setController(this);
         
     }
-    
+    public Prestamo getPrestamo()
+    {
+        return this.model.getPrestamo();
+    }
     public void agregarPrestamo(Prestamo prestamo, String ced)
     {
         try 
@@ -85,7 +88,30 @@ public class Controller  {
               }
               
           }
-    public void show(){
+
+    public void consultarPrestamo(String cedula, String idPrestamo) 
+    {
+        try
+        {
+           Prestamo prestamo = Service.instance().PrestamoGet(cedula, idPrestamo);
+            model.setPrestamo(prestamo);
+            model.commit();
+            
+        }
+        catch (Exception e)
+        {
+            model.setPrestamo(new Prestamo());
+            model.commit();
+            
+        }
+    }
+    public void seleccionarPrestamo(int fila)
+    {
+        Prestamo prestamo = model.getPrestamos().get(fila);
+        model.setPrestamo(prestamo);
+        model.commit();
+    }
+          public void show(){
         
         model.setCliente(Application.PRINCIPAL.getCliente());
         this.view.setVisible(true);
@@ -94,6 +120,14 @@ public class Controller  {
     
     public void hide(){
         this.view.setVisible(false);
-        Application.PRINCIPAL.show();
+        
+    }
+    
+        //**************************Reportes****************************************
+    
+    void mostrarReportes()
+    {
+        this.hide();
+        Application.REPORTES.show();
     }
 }

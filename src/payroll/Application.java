@@ -26,7 +26,11 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
+
+        payroll.presentation.reportes.Model modelReportes = new payroll.presentation.reportes.Model();
+        payroll.presentation.reportes.View viewReportes = new payroll.presentation.reportes.View();
+        payroll.presentation.reportes.Controller controllerReportes = new payroll.presentation.reportes.Controller(modelReportes, viewReportes);
+        REPORTES = controllerReportes;
         
         payroll.presentation.prestamos.Model modelPrestamos = new payroll.presentation.prestamos.Model();
         payroll.presentation.prestamos.View viewPrestamos = new payroll.presentation.prestamos.View();
@@ -41,6 +45,7 @@ public class Application {
         PRINCIPAL.show();
     }
     
+    public static payroll.presentation.reportes.Controller REPORTES;
     public static payroll.presentation.principal.Controller PRINCIPAL;
     public static payroll.presentation.prestamos.Controller PRESTAMOS;
     

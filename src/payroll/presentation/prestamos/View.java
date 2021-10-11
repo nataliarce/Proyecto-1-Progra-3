@@ -7,6 +7,7 @@ package payroll.presentation.prestamos;
 
 import java.util.Observable;
 import javax.swing.JOptionPane;
+import payroll.Application;
 import payroll.logic.Prestamo;
 
 /**
@@ -46,6 +47,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         idFld.setText(model.getCliente().getCedula());
         prestamosTbl.setModel(new PrestamosTableModel(model.getPrestamos()));
         pagosTbl.setModel(new PagosTableModel(model.getPagos()));
+        Prestamo prestamo = model.getPrestamo();
+        pdfidPrestamo.setText(prestamo.getId());
+        
+
+        
+        
+                
+//         Cliente cliente = model.getCliente();
+//         cedula.setText(cliente.getCedula());
+//         nombre.setText(cliente.getNombre());    
+//         provincia.setText(cliente.getProvincia().getNombre());
+//         cantonCB.setSelectedItem(cantonCB.getSelectedItem());
+//         cantonCB.setSelectedItem(cliente.getCanton());
 
     }
     
@@ -80,6 +94,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         labelPrestamo = new javax.swing.JLabel();
         idPrestamo = new javax.swing.JTextField();
         aux = new javax.swing.JButton();
+        pdfBuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         labelPago = new javax.swing.JLabel();
         pago = new javax.swing.JTextField();
@@ -90,10 +105,15 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         fecha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         idBuscarPrestamo = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         labelNombre = new javax.swing.JLabel();
-        labelid = new javax.swing.JLabel();
         clienteFld = new javax.swing.JTextField();
+        labelid = new javax.swing.JLabel();
         idFld = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        PdfBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        pdfidPrestamo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -123,6 +143,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        prestamosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prestamosTblMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(prestamosTbl);
 
         guardarPrestamo.setText("Guardar Prestamo");
@@ -138,6 +163,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         aux.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 auxActionPerformed(evt);
+            }
+        });
+
+        pdfBuscar.setText("Consultar");
+        pdfBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdfBuscarActionPerformed(evt);
             }
         });
 
@@ -170,7 +202,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addComponent(guardarPrestamo)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(aux)
-                                .addGap(37, 37, 37))))
+                                .addGap(37, 37, 37))
+                            .addComponent(pdfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -199,10 +232,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelTasa)
-                    .addComponent(tasaInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tasaInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pdfBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
@@ -278,9 +313,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addContainerGap())
         );
 
-        labelNombre.setText("Cliente");
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
 
-        labelid.setText("ID");
+        labelNombre.setText("Cliente");
 
         clienteFld.setEditable(false);
         clienteFld.addActionListener(new java.awt.event.ActionListener() {
@@ -289,50 +324,118 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
+        labelid.setText("ID Cliente");
+
         idFld.setEditable(false);
+        idFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idFldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNombre)
+                    .addComponent(labelid))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clienteFld, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(idFld))
+                .addGap(25, 25, 25))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clienteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombre))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelid)
+                    .addComponent(idFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 204, 255));
+
+        PdfBtn.setText("CREACION PDF");
+        PdfBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PdfBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("ID Prestamo");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PdfBtn)
+                    .addComponent(pdfidPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(pdfidPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(PdfBtn)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelid)
-                    .addComponent(labelNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clienteFld)
-                    .addComponent(idFld, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(regresarBtn)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(regresarBtn)))
-                .addGap(15, 15, 15))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(130, 130, 130)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(62, 62, 62)))
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNombre)
-                    .addComponent(clienteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelid)
-                    .addComponent(idFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(regresarBtn)
                 .addGap(11, 11, 11))
         );
@@ -343,6 +446,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
         // TODO add your handling code here:
         controller.hide();
+        Application.PRINCIPAL.show();
     }//GEN-LAST:event_regresarBtnActionPerformed
 
     private void clienteFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteFldActionPerformed
@@ -362,6 +466,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             int numTasa = Integer.parseInt(tasaInteres.getText());
             controller.agregarPrestamo(new Prestamo(idPrestamo.getText(),numMonto,numPlazo,numTasa),idFld.getText());
             JOptionPane.showMessageDialog(this, "Prestamo agregado");
+            controller.prestamoSearch(idFld.getText());
         }
     }//GEN-LAST:event_guardarPrestamoActionPerformed
 
@@ -384,6 +489,33 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             JOptionPane.showMessageDialog(this, "Se realizo el pago exitosamente");
         }
     }//GEN-LAST:event_pagoCuotaActionPerformed
+
+    private void PdfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PdfBtnActionPerformed
+        // TODO add your handling code here:
+        if (pdfidPrestamo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Seleccione un prestamo del table model para poder realizar la creacion del pdf");
+        }
+        controller.mostrarReportes();
+    }//GEN-LAST:event_PdfBtnActionPerformed
+
+    private void idFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFldActionPerformed
+        // TODO add your handling code here:
+        //no se necesita
+    }//GEN-LAST:event_idFldActionPerformed
+
+    private void pdfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfBuscarActionPerformed
+        // TODO add your handling code here:
+        controller.consultarPrestamo(idFld.getText(), idPrestamo.getText());
+    }//GEN-LAST:event_pdfBuscarActionPerformed
+
+    private void prestamosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prestamosTblMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2)
+        {
+            controller.seleccionarPrestamo(prestamosTbl.getSelectedRow());
+        }
+    }//GEN-LAST:event_prestamosTblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -422,6 +554,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PdfBtn;
     private javax.swing.JButton aux;
     private javax.swing.JTextField clienteFld;
     private javax.swing.JTextField fecha;
@@ -430,8 +563,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField idFld;
     private javax.swing.JTextField idPrestamo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelFecha;
@@ -446,6 +582,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField pago;
     private javax.swing.JToggleButton pagoCuota;
     private javax.swing.JTable pagosTbl;
+    private javax.swing.JButton pdfBuscar;
+    private javax.swing.JTextField pdfidPrestamo;
     private javax.swing.JTextField plazo;
     private javax.swing.JTable prestamosTbl;
     private javax.swing.JButton regresarBtn;

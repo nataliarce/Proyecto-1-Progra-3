@@ -13,6 +13,7 @@ la nueva cuota mensual será menor que antes
 */
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlIDREF;
@@ -98,6 +99,15 @@ public class Prestamo
     {
         this.tasaInteres = tasa;
     }
+
+    public List<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
+    }
+    
     
     public double calcularCuota()
     {
@@ -116,6 +126,12 @@ public class Prestamo
                 (double)getTasaInteres() + "Cuota" + (double)calcularCuota();
     }
     
+    public String pdftoString()
+    {
+        return "Id: " + getId() + "\n" + "Monto: " + (int)getMonto() +  "\n" + "Plazo: " + (int)getPlazo() + "\n" + "Tasa de Interes: " +
+                (int)getTasaInteres() + "\n" + "Cuota: " + (int)calcularCuota();
+                
+    }
     public void anadirPago(String fecha, float monto)
     {
         Pago p;
@@ -136,6 +152,7 @@ public class Prestamo
             }
             else
             {
+                JOptionPane.showMessageDialog(null, "El pago no puede ser menor a la cuota");
                 throw new IllegalArgumentException();
             }
         }

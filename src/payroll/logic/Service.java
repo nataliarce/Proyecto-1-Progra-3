@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 import payroll.data.Data;
 import payroll.data.XmlPersister;
 
@@ -32,6 +33,9 @@ public class Service {
      
      
     private Data data;
+    private PdfListadoClientes pdfClientes;
+    private PdfListadoPrestamos pdfPrestamos;
+    private PdfListadoPagos pdfPagos;
     //-----------------------------------
      
     ArrayList<Rectangle> coordenadas;
@@ -48,6 +52,9 @@ public class Service {
            data = new Data();
        }
        agregar();
+       pdfClientes = new PdfListadoClientes();
+       pdfPrestamos = new PdfListadoPrestamos();
+       pdfPagos = new PdfListadoPagos();
     }
     
     public void agregar()
@@ -222,7 +229,12 @@ public class Service {
         
     public List<Prestamo> todosLosPrestamos()
     {
-        return data.getPrestamos();
+        List<Cliente> clientes = clienteAll();
+        for (Cliente c:clientes)
+        {
+            return c.getPrestamos();
+        }
+        return null;
     }
     
     public List<Prestamo> PrestamoSearch(String cedula) throws Exception
@@ -251,7 +263,20 @@ public class Service {
             throw new Exception ("Prestamo no encontrado");
         }
         
-
+    }
+    
+    public List<Prestamo> prestamoAll() throws Exception
+    {
+        List<Cliente> clientes = clienteAll();
+        
+        
+        for (Cliente c : clientes)
+        {
+            return c.getPrestamos();
+        }
+        
+        throw new Exception (" ");
+        
     }
     
 
@@ -271,6 +296,43 @@ public class Service {
             throw new Exception ("Ya se pago todo el monto");
         }
     }
+    
+        //**************************************************************************
+    
+//    
+//    
+//    
+//    
+//                          TERCERA PANTALLA
+//    
+//    
+//    
+//    
+//    
+    //*******************************PDF CLIENTES*******************************
+    
+    public void crearPdfClientes(List<Cliente> clientes) throws Exception
+    {
+        pdfClientes.crearPdfClientes(clientes);
+    }
+    
+    //*******************************PDF PRESTAMOS******************************
+    
+    public void crearPdfPrestamos(String id) throws Exception
+    {
+ 
+             pdfPrestamos.crearPdfPrestamos(id);
+        
+   
+    }
+    
+    //*******************************PDF PAGOS**********************************
+    
+    public void crearPdfPagos(String cedula, String idPrestamo) throws Exception
+    {
+        pdfPagos.crearPdfPagos(cedula,idPrestamo);
+    }
+    
     //**************************************************************************
     public void store()
     {
