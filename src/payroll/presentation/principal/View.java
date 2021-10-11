@@ -310,18 +310,45 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     //***********************EVENTO DE CLIENTE**********************************
     private void ConsultarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBtnActionPerformed
-        controller.consultarClientePorCedula(cedula.getText());
+
+          controller.consultarClientePorCedula(cedula.getText());
         Cliente cliente = model.getCliente();
         
         if (!cliente.equals(new Cliente()))
         {
-            cantonCB.setModel(new DefaultComboBoxModel(controller.getCantones(cliente.getProvincia().getNombre()).toArray()));
+            cantonCB.setModel(new DefaultComboBoxModel(controller.consultarCanton(cliente.getProvincia().getNombre()).toArray()));
             cantonCB.setSelectedItem(cliente.getCanton());
+            distritoCB.setModel(new DefaultComboBoxModel(controller.consultarDistrito(cliente.getProvincia().getNombre(),
+                    cliente.getCanton().getNombre()).toArray()));
+            distritoCB.setSelectedItem(cliente.getDistrito());
+            provincia.setText(cliente.getProvincia().getNombre());
+            provinciasMapa.setIcon(pro[Integer.parseInt(cliente.getProvincia().getNumero())]);
+            prestamos.setEnabled(true);
+            cliente.getPrestamos();
         }
         else 
         {
-            //cantonCB.setModel(new Default);
+            distritoCB.removeAllItems();
+            cantonCB.setModel(new DefaultComboBoxModel(/*provinciaActual.getCantones().toArray() */));
+            provinciasMapa.setIcon(pro[0]);
+            provincia.setText("");
+            //this.provinciaActual.setNombre(");
+            prestamos.setEnabled(false);
+            
         }
+
+//        controller.consultarClientePorCedula(cedula.getText());
+//        Cliente cliente = model.getCliente();
+//        
+//        if (!cliente.equals(new Cliente()))
+//        {
+//            cantonCB.setModel(new DefaultComboBoxModel(controller.getCantones(cliente.getProvincia().getNombre()).toArray()));
+//            cantonCB.setSelectedItem(cliente.getCanton());
+//        }
+//        else 
+//        {
+//            //cantonCB.setModel(new Default);
+//        }
     }//GEN-LAST:event_ConsultarBtnActionPerformed
 
     //***********************EVENTO DE MAPA************************************
