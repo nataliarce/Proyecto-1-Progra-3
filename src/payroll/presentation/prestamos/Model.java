@@ -23,10 +23,9 @@ public class Model extends Observable
 {
     
     private Cliente cliente;
-    private Pago pago;
     private Prestamo prestamo;
     private List<Prestamo> prestamos;
-    private List<Pago> pagos;
+
 
     public Cliente getCliente() {
         return cliente;
@@ -34,14 +33,6 @@ public class Model extends Observable
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public Pago getPago() {
-        return pago;
-    }
-
-    public void setPago(Pago pago) {
-        this.pago = pago;
     }
 
     public Prestamo getPrestamo() {
@@ -60,15 +51,6 @@ public class Model extends Observable
         this.prestamos = prestamos;
     }
 
-    public List<Pago> getPagos() {
-        return pagos;
-    }
-
-    public void setPagos(List<Pago> pagos) {
-        this.pagos = pagos;
-    }
- 
-    
     
     @Override
     public synchronized void addObserver(Observer o) {

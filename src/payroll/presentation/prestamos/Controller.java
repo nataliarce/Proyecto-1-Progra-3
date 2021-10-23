@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import payroll.Application;
 import payroll.logic.Cliente;
-import payroll.logic.Pago;
 import payroll.logic.Prestamo;
 import payroll.logic.Service;
 
@@ -31,8 +30,6 @@ public class Controller  {
         this.view = view;
         this.model.setPrestamo(new Prestamo());
         this.model.setPrestamos(new ArrayList<>());
-        this.model.setPago(new Pago());
-        this.model.setPagos(new ArrayList<>());
         this.model.setCliente(new Cliente());
         
         // invoke Model sets for initialization before linking to the view
@@ -41,10 +38,12 @@ public class Controller  {
         view.setController(this);
         
     }
+    
     public Prestamo getPrestamo()
     {
         return this.model.getPrestamo();
     }
+    
     public void agregarPrestamo(Prestamo prestamo, String ced)
     {
         try 
@@ -74,36 +73,36 @@ public class Controller  {
         }
     }
     
-    public void agregarPago(String fecha, int monto, String cedula,String id)
-    {
-        try
-        {
-            Service.instance().agregarPago(fecha, monto, cedula,id);
-            model.setPago(new Pago("",0,0,0,0));
-            model.commit();
-        }
-        catch (Exception e)
-        {
-                  
-        }         
-              
-      }         
-
-    public void consultarPago(String cedula, String idPrestamo, String fecha)
-    {
-        try
-        {
-            Pago pagos = Service.instance().pagoGet(cedula, idPrestamo,fecha);
-            model.setPago(pagos);
-            model.commit();
-            
-        }
-        catch (Exception e)
-        {
-            model.setPago(new Pago());
-            model.commit();
-        }
-    }
+//    public void agregarPago(String fecha, int monto, String cedula,String id)
+//    {
+//        try
+//        {
+//            Service.instance().agregarPago(fecha, monto, cedula,id);
+//            model.setPago(new Pago("",0,0,0,0));
+//            model.commit();
+//        }
+//        catch (Exception e)
+//        {
+//                  
+//        }         
+//              
+//      }         
+//
+//    public void consultarPago(String cedula, String idPrestamo, String fecha)
+//    {
+//        try
+//        {
+//            Pago pagos = Service.instance().pagoGet(cedula, idPrestamo,fecha);
+//            model.setPago(pagos);
+//            model.commit();
+//            
+//        }
+//        catch (Exception e)
+//        {
+//            model.setPago(new Pago());
+//            model.commit();
+//        }
+//    }
     public void consultarPrestamo(String cedula, String idPrestamo) 
     {
         try
@@ -126,7 +125,8 @@ public class Controller  {
         model.setPrestamo(prestamo);
         model.commit();
     }
-          public void show(){
+    
+    public void show(){
         
         model.setCliente(Application.PRINCIPAL.getCliente());
         this.view.setVisible(true);
@@ -135,14 +135,18 @@ public class Controller  {
     
     public void hide(){
         this.view.setVisible(false);
-        
+        Application.PRINCIPAL.show();
     }
     
-        //**************************Reportes****************************************
-    
-    void mostrarReportes()
+    public void hide2()
     {
-        this.hide();
-        Application.REPORTES.show();
+        this.view.setVisible(false);
+    }
+        //**************************Pagos****************************************
+    
+    public void mostrarPagos()
+    {
+        this.hide2();
+        Application.PAGOS.show();
     }
 }

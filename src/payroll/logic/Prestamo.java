@@ -11,6 +11,8 @@ Si el cliente hiciera un pago por un monto superior a la cuota eso disminuye de 
 préstamo. En dicho caso deberá recalcularse la cuota, considerando el saldo remanente y el plazo restante. Así 
 la nueva cuota mensual será menor que antes
 */
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -24,6 +26,7 @@ import javax.xml.bind.annotation.XmlIDREF;
  *         Michelle Delgado Meneses
  * 
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo 
 {
@@ -32,6 +35,9 @@ public class Prestamo
     private double plazo;
     private double tasaInteres;
     private List<Pago> pagos;
+    static private float saldoActual = 1;
+    private double nuevoMonto = 0;
+    private double plazoRestante = 0;
     
     public Prestamo()
     {
@@ -40,6 +46,9 @@ public class Prestamo
         this.plazo = 0;
         this.tasaInteres = 0;  
         this.pagos = new ArrayList<>();
+        this.saldoActual = 1;
+        this.nuevoMonto = 0;
+        this.plazoRestante = 0;
     }
 
     public Prestamo(String id,double monto, double plazo, double tasaInteres, List<Pago> pagos) {
@@ -48,7 +57,9 @@ public class Prestamo
         this.plazo = plazo;
         this.tasaInteres = tasaInteres;
         this.pagos = pagos;
-        
+        this.saldoActual = 1;
+        this.nuevoMonto = 0;
+        this.plazoRestante = 0;
     }
     
     
@@ -58,7 +69,9 @@ public class Prestamo
         this.plazo = plazo;
         this.tasaInteres = tasaInteres;
         this.pagos = new ArrayList<>();
-        
+        this.saldoActual = 1;
+        this.nuevoMonto = 0;
+        this.plazoRestante = 0;
     }
 
     public String getId() {
@@ -107,6 +120,30 @@ public class Prestamo
     public void setPagos(List<Pago> pagos) {
         this.pagos = pagos;
     }
+
+    public double getSaldoActual() {
+        return saldoActual;
+    }
+
+    public void setSaldoActual(float saldoActual) {
+        this.saldoActual = saldoActual;
+    }
+
+    public double getNuevoMonto() {
+        return nuevoMonto;
+    }
+
+    public void setNuevoMonto(double nuevoMonto) {
+        this.nuevoMonto = nuevoMonto;
+    }
+
+    public double getPlazoRestante() {
+        return plazoRestante;
+    }
+
+    public void setPlazoRestante(double plazoRestante) {
+        this.plazoRestante = plazoRestante;
+    }
     
     
     public double calcularCuota()
@@ -126,38 +163,104 @@ public class Prestamo
                 (double)getTasaInteres() + "Cuota" + (double)calcularCuota();
     }
     
-    public void anadirPago(String fecha, float monto)
-    {
+//    public void anadirPago(String fecha, float monto)
+//    {
+//        Pago p;
+//        int numeroPago = pagos.size() + 1;
+//        
+//        if(monto == calcularCuota())
+//        {
+//            p = new Pago(fecha,numeroPago, monto, getInteresActual(), getAmortizacionActual());
+//            pagos.add(p);
+//        }
+//        else //caso especial, monto mayor a la cuota
+//        {
+//            if(monto > calcularCuota())
+//            {
+//                p = new Pago(fecha,numeroPago, monto, getInteresActual(), getAmortizacionActual());
+//                pagos.add(p);
+//                setMonto(this.monto - monto);
+//            }
+//            else
+//            {
+//                JOptionPane.showMessageDialog(null, "El pago no puede ser menor a la cuota");
+//                throw new IllegalArgumentException();
+//            }
+//        }
+//    }
+//    
+    
+public void anadirPago(String fecha,float montoAPagar) throws Exception
+    {  
         Pago p;
-        int numeroPago = pagos.size() + 1;
-        
-        if(monto == calcularCuota())
+        //float saldoActual = (float)this.monto - montoAPagar;
+        if (saldoActual > 0)
         {
-            p = new Pago(fecha,numeroPago, monto, getInteresActual(), getAmortizacionActual());
-            pagos.add(p);
-        }
-        else //caso especial, monto mayor a la cuota
-        {
-            if(monto > calcularCuota())
+//            LocalDate localDate = LocalDate.now();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy"); 
+//            String fecha2 = localDate.format(formatter);
+            float interesActual = 0;
+            float amortizacionActual = 0;
+            int numeroPago = 0;
+            
+            if (pagos.isEmpty())
             {
-                p = new Pago(fecha,numeroPago, monto, getInteresActual(), getAmortizacionActual());
+                numeroPago = 1;
+                saldoActual = (float)this.monto;
+            }
+            else 
+            {
+                numeroPago = pagos.size()+1;
+            }
+            
+            int cuota = (int)this.calcularCuota();
+            
+            if (montoAPagar == cuota)
+            {
+                interesActual = (float)(saldoActual * (this.tasaInteres/100));
+                amortizacionActual = cuota - interesActual;
+                saldoActual = saldoActual - amortizacionActual;
+                if (saldoActual<0)
+                {
+                    saldoActual = 0;
+                }
+                
+                p = new Pago(fecha,numeroPago,montoAPagar,interesActual,amortizacionActual);
                 pagos.add(p);
-                setMonto(this.monto - monto);
             }
-            else
+            else 
             {
-                JOptionPane.showMessageDialog(null, "El pago no puede ser menor a la cuota");
-                throw new IllegalArgumentException();
+                if (montoAPagar > cuota)
+                {
+                    interesActual = (float)(saldoActual * (this.tasaInteres/100));
+                    amortizacionActual = cuota - interesActual;
+                    saldoActual = saldoActual - amortizacionActual;
+                    float aux = montoAPagar - cuota;
+                    saldoActual = saldoActual - aux;
+                    if (saldoActual < 0)
+                    {
+                        saldoActual = 0;
+                    }
+                    p = new Pago(fecha,numeroPago,montoAPagar,interesActual,amortizacionActual);
+                    pagos.add(p);
+                    nuevoMonto = saldoActual;
+                    plazoRestante = this.plazo - pagos.size();
+                }
+                else 
+                {
+                  throw new Exception ("El saldo es 0");
+                }
             }
+            
         }
     }
-    
     public float getInteresActual()
     {
         float interesActual = (float)(getMonto() * getTasaInteres() / 100);
         return interesActual;
     }
     
+   
     public float getAmortizacionActual()
     {
         float amortizacionActual = (float)(calcularCuota() - getInteresActual());

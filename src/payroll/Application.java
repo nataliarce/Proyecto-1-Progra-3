@@ -27,6 +27,11 @@ public class Application {
      */
     public static void main(String[] args) {
 
+        payroll.presentation.pagos.Model modelPagos = new payroll.presentation.pagos.Model();
+        payroll.presentation.pagos.View viewPagos = new payroll.presentation.pagos.View();
+        payroll.presentation.pagos.Controller controllerPagos = new payroll.presentation.pagos.Controller(modelPagos, viewPagos);
+        PAGOS = controllerPagos;
+        
         payroll.presentation.reportes.Model modelReportes = new payroll.presentation.reportes.Model();
         payroll.presentation.reportes.View viewReportes = new payroll.presentation.reportes.View();
         payroll.presentation.reportes.Controller controllerReportes = new payroll.presentation.reportes.Controller(modelReportes, viewReportes);
@@ -45,6 +50,7 @@ public class Application {
         PRINCIPAL.show();
     }
     
+    public static payroll.presentation.pagos.Controller PAGOS;
     public static payroll.presentation.reportes.Controller REPORTES;
     public static payroll.presentation.principal.Controller PRINCIPAL;
     public static payroll.presentation.prestamos.Controller PRESTAMOS;

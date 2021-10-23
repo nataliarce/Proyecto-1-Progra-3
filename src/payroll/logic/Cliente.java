@@ -117,17 +117,17 @@ public class Cliente {
         prestamos.add(p);
     }
     
-    public void anadirPago(Prestamo prestamo, String fecha, float monto)
-    {
-        for(Prestamo p : prestamos)
-        {
-            if(p.equals(prestamo))
-            {
-                p.anadirPago(fecha, monto);
-                break;
-            }
-        }
-    }
+//    public void anadirPago(Prestamo prestamo, String fecha, float monto)
+//    {
+//        for(Prestamo p : prestamos)
+//        {
+//            if(p.equals(prestamo))
+//            {
+//                p.anadirPago(fecha, monto);
+//                break;
+//            }
+//        }
+//    }
     
 
     @Override

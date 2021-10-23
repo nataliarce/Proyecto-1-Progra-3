@@ -23,10 +23,6 @@ import java.util.List;
 public class PdfListadoClientes 
 {
 
-    
-  
-    
-
     public PdfListadoClientes() 
     {      
     }

@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import payroll.Application;
 import payroll.logic.Canton;
 import payroll.logic.Cliente;
@@ -198,7 +199,48 @@ public class Controller  {
         }
     }
     
-  
+  //*****************************PDF********************************************
+        public void crearPdfClientes(List<Cliente> clientes)
+    {
+        try
+        {
+            Service.instance().crearPdfClientes(clientes);
+            JOptionPane.showMessageDialog(null,"Se ha creado el pdf correctamente");
+            model.commit();
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "No se pudo crear el pdf");
+        }
+    }
+    
+    public void crearPdfPrestamos(String id)
+    {
+        try
+        {
+            Service.instance().crearPdfPrestamos(id);
+            JOptionPane.showMessageDialog(null,"Se ha creado el pdf correctamente");
+            model.commit();
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "No se pudo crear el pdf");
+        }
+    }   
+    
+    public void crearPdfPagos(String cedula, String idPrestamo)
+    {
+        try
+        {
+            Service.instance().crearPdfPagos(cedula,idPrestamo);
+            JOptionPane.showMessageDialog(null,"Se ha creado el pdf correctamente");
+            model.commit();
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "No se pudo crear el pdf");
+        }
+    }
     
     //*************************Prestamos***************************************
     

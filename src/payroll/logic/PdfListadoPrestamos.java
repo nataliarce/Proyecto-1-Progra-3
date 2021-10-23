@@ -51,7 +51,7 @@ public class PdfListadoPrestamos
             documento.add(new Paragraph("Nombre: " + resultado.getNombre()));
             documento.add(new Paragraph("ID Prestamo: " + prestamos.get(i).getId()));
             documento.add(new Paragraph("Monto: " + prestamos.get(i).getMonto()));
-            documento.add(new Paragraph("Plazo: " + prestamos.get(i).getPlazo() + "meses"));
+            documento.add(new Paragraph("Plazo: " + prestamos.get(i).getPlazo() + " meses"));
             documento.add(new Paragraph("Tasa de Interes: " + prestamos.get(i).getTasaInteres()));
             documento.add(new Paragraph("Tasa de Interes: " + prestamos.get(i).calcularCuota()));
             documento.add(new Paragraph("Cantidad de pagos: " + prestamos.get(i).getPagos().size()));
@@ -61,22 +61,6 @@ public class PdfListadoPrestamos
             documento.add(Chunk.NEWLINE);
 
         }
-
-               // documento.add(new Paragraph("ID Prestamo:  ))
-        
-//        for (int i = 0; i< clientes.size();i++)
-//        {
-//            documento.add(new Paragraph("ID: " + clientes.get(i).getCedula()));
-//            documento.add(new Paragraph("Nombre: " + clientes.get(i).getNombre()));
-//            documento.add(new Paragraph("Tasa de Interes: " + clientes.get(i).getPrestamos().toString()));
-//            documento.add(new Paragraph("ID Prestamo: " + clientes.get(i).getPrestamos().get(i).getId()));
-//            documento.add(new Paragraph("Monto: " + clientes.get(i).getPrestamos().get(i).getMonto()));
-//            documento.add(new Paragraph("Plazo: " + clientes.get(i).getPrestamos().get(i).getPlazo()));
-//            documento.add(new Paragraph("Tasa de Interes: " + clientes.get(i).getPrestamos().get(i).getTasaInteres()));
-//            documento.add(new Paragraph("Tasa de Interes: " + clientes.get(i).getPrestamos().get(i)));
-//
-//            documento.add(Chunk.NEWLINE);
-//        }
 
         documento.add(new Paragraph("-----------------------------------------------Fin del Documento-----------------------------------------------"));
         documento.close();

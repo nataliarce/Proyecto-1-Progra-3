@@ -272,6 +272,7 @@ public class Service {
     }
     
 
+
     
     //*****************************Pagos****************************************
 
@@ -304,6 +305,29 @@ public class Service {
             throw new Exception ("Pagos no encontrado");
         }
     }
+    
+        public List<Pago> pagoAll() throws Exception
+    {
+        List<Prestamo> prestamos = prestamoAll();
+        
+        for (Prestamo p : prestamos)
+        {
+            return p.getPagos();
+        }
+        
+        throw new Exception(" ");
+    }
+        
+        public List<Pago> PagoSearch(String cedula, String idPrestamo) throws Exception
+    {
+
+        Prestamo prestamo = PrestamoGet(cedula,idPrestamo);
+         List<Pago> resultado = prestamo.getPagos();
+         
+         return resultado;
+
+    }
+
         //**************************************************************************
     
 //    
@@ -329,8 +353,7 @@ public class Service {
     {
  
              pdfPrestamos.crearPdfPrestamos(id);
-        
-   
+
     }
     
     //*******************************PDF PAGOS**********************************
