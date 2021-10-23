@@ -372,27 +372,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         }
         else 
         {
-            controller.consultarClientePorCedula(cedula.getText());
-            Cliente cliente = model.getCliente();
-            if (!cliente.equals(null))
-                    {
-                        
-                        if (provincia.getText() != String.valueOf(cliente.getProvincia()))
-                            
-                        {
-                            Provincia p = controller.buscarProvinciaPorNombre(provincia.getText());
-                            cliente.setProvincia(p);
-                        }
-
-                        if (cantonCB.getSelectedItem() != cliente.getCantidadPremios())
-                        {
-                             director.setCantidadPremios(PremiosField.getText());
-                        }
-                            Provincia p = controller.buscarProvinciaPorNombre(provincia.getText());
-                            Canton c = controller.buscarCantonPorNombre((String) cantonCB.getSelectedItem());
-                            Distrito d = controller.buscarDistritoPorNombre((String) distritoCB.getSelectedItem());
-                            cliente.s
-                        }
             Provincia p = controller.buscarProvinciaPorNombre(provincia.getText());
             Canton c = controller.buscarCantonPorNombre((String) cantonCB.getSelectedItem());
             Distrito d = controller.buscarDistritoPorNombre((String) distritoCB.getSelectedItem());
